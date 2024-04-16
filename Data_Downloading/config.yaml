@@ -1,14 +1,14 @@
 region:
-  point_1: [-90.997728,39.126623]
-  point_2: [-90.988519,39.122188]
-  point_3: [-90.997851,39.117090]
-  point_4: [-91.007803,39.120142]
+  point_1: [-91.636670,39.333897]
+  point_2: [-91.632655,39.328732]
+  point_3: [-91.638519,39.323193]
+  point_4: [-91.644631,39.326990]
 
 
 
 rgb:
   choose: 1
-  path: '/home/macula/SMATousi/Gullies/SO_Paper/data'
+  path: '/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt'
   spec:
     dimension: '2000x2000'
     format: "GEO_TIFF"
@@ -26,8 +26,8 @@ rgb:
                   ['2020', '2022']]
 
 dem:
-  choose: 0
-  path: '/home/macula/SMATousi/Gullies/SO_Paper/data/Ellis'
+  choose: 1
+  path: '/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt'
   spec:
     dimension: '2000x2000'
     format: "GEO_TIFF"

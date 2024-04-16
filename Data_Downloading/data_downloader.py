@@ -8,6 +8,7 @@ import shutil
 from retry import retry
 import json
 import yaml
+import os
 
 ee.Initialize(opt_url='https://earthengine-highvolume.googleapis.com')
 
@@ -17,6 +18,8 @@ with open('config.yaml', 'r') as file:
 rgb_path = config['rgb']['path']
 dem_path = config['dem']['path']
 
+os.makedirs(rgb_path, exist_ok=True)
+os.makedirs(dem_path, exist_ok=True)
 
 print(config['rgb']['spec']['filter_dates'])
 # print(f"spec : {len(spec_config['point_1'])}")
