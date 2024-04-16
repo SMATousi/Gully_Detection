@@ -4,15 +4,26 @@ region:
   point_3: [-90.997851,39.117090]
   point_4: [-91.007803,39.120142]
 
+
+
 rgb:
   choose: 1
-  path: '/home/macula/SMATousi/Gullies/SO_Paper/data/Ellis'
+  path: '/home/macula/SMATousi/Gullies/SO_Paper/data'
   spec:
     dimension: '2000x2000'
     format: "GEO_TIFF"
-    prefix: 'tile_20_'
-    filter_date_1: '2022'
-    filter_date_2: '2020'
+    prefix: ['tile_10_',
+             'tile_12_',
+             'tile_14_',
+             'tile_16_',
+             'tile_18_',
+             'tile_20_']
+    filter_dates: [['2010', '2012'],
+                  ['2012', '2014'],
+                  ['2014', '2016'],
+                  ['2016', '2018'],
+                  ['2018', '2020'],
+                  ['2020', '2022']]
 
 dem:
   choose: 0
