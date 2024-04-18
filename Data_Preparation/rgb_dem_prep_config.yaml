@@ -1,15 +1,15 @@
 dem:
-  path: '/home/macula/SMATousi/Gullies/SO_Paper/data/Bayfarm/dem_tile_0.tif'
-  out_path: '/home/macula/SMATousi/Gullies/SO_Paper/data/Bayfarm/dem' 
+  path: '/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt/dem_tile_0.tif'
+  out_path: '/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt/dem' 
 
 
 rgb:
-  paths: ['/home/macula/SMATousi/Gullies/SO_Paper/data/Bayfarm/tile_10_0.tif', 
-             '/home/macula/SMATousi/Gullies/SO_Paper/data/Bayfarm/tile_12_0.tif', 
-             '/home/macula/SMATousi/Gullies/SO_Paper/data/Bayfarm/tile_14_0.tif',
-             '/home/macula/SMATousi/Gullies/SO_Paper/data/Bayfarm/tile_16_0.tif',
-             '/home/macula/SMATousi/Gullies/SO_Paper/data/Bayfarm/tile_18_0.tif',
-             '/home/macula/SMATousi/Gullies/SO_Paper/data/Bayfarm/tile_20_0.tif']
-  out_path: '/home/macula/SMATousi/Gullies/SO_Paper/data/Bayfarm/rgb' 
+  paths: ['/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt/tile_10_0.tif', 
+             '/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt/tile_12_0.tif', 
+             '/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt/tile_14_0.tif',
+             '/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt/tile_16_0.tif',
+             '/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt/tile_18_0.tif',
+             '/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt/tile_20_0.tif']
+  out_path: '/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt/rgb' 
 
 

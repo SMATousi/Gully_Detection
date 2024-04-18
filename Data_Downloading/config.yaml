@@ -10,7 +10,7 @@ rgb:
   choose: 1
   path: '/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt'
   spec:
-    dimension: '2000x2000'
+    dimension: '2048x2048'
     format: "GEO_TIFF"
     prefix: ['tile_10_',
              'tile_12_',
