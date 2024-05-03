@@ -92,8 +92,8 @@ def generate_tiles(dem_path, rgb_paths, output_dirs, tile_size=(128, 128)):
                 window = Window(i, j, tile_size[0], tile_size[1])
                 dem_tile = dem_src.read(window=window)
 
-                if has_no_data(dem_tile):
-                    continue
+                # if has_no_data(dem_tile):
+                #     continue
 
                 # cropland_tile = cropland_src.read(1, window=window)
                 # if not is_crop_land_valid(cropland_tile):
@@ -105,9 +105,9 @@ def generate_tiles(dem_path, rgb_paths, output_dirs, tile_size=(128, 128)):
                 for rgb_path in rgb_paths:
                     with rasterio.open(rgb_path) as rgb_src:
                         rgb_tile = rgb_src.read(window=window)
-                        if has_no_data(rgb_tile):
-                            rgb_tiles = []
-                            break
+                        # if has_no_data(rgb_tile):
+                        #     rgb_tiles = []
+                        #     break
                         rgb_tiles.append((rgb_tile, rgb_src.profile))
 
                 if not rgb_tiles:
