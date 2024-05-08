@@ -1,14 +1,14 @@
 region:
-  point_1: [-91.636670,39.333897]
-  point_2: [-91.632655,39.328732]
-  point_3: [-91.638519,39.323193]
-  point_4: [-91.644631,39.326990]
+  point_1: [-92.25584,39.44133]
+  point_2: [-92.14776,39.50539]
+  point_3: [-92.04512,39.43684]
+  point_4: [-92.13784,39.37915]
 
 
 
 rgb:
   choose: 1
-  path: '/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt'
+  path: '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/gully_detection/raw_data/HUC_071100060307/RGB'
   spec:
     dimension: '2048x2048'
     format: "GEO_TIFF"
@@ -27,13 +27,17 @@ rgb:
 
 dem:
   choose: 1
-  path: '/home/macula/SMATousi/Gullies/SO_Paper/data/Braunqardt'
+  path: '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/gully_detection/raw_data/HUC_071100060307/DEM'
   spec:
     dimension: '2000x2000'
     format: "GEO_TIFF"
     prefix: 'dem_tile_'
     filter_date_1: '2022'
     filter_date_2: '2000'
+
+
+merge:
+  path: '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/gully_detection/raw_data/HUC_071100060307/merged'
   
 
 
