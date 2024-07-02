@@ -1,3 +1,7 @@
+import zipfile
+import os
+import xml.etree.ElementTree as ET
+
 def extract_kml_from_kmz(kmz_path, extraction_root):
     # Ensure the extraction directory exists
     extract_path = os.path.join(extraction_root, 'extracted_kml')

@@ -28,6 +28,7 @@ os.makedirs(rgb_path, exist_ok=True)
 os.makedirs(dem_path, exist_ok=True)
 
 print(config['rgb']['spec']['filter_dates'])
+
 # print(f"spec : {len(spec_config['point_1'])}")
 
 # region = ee.Geometry.Polygon(

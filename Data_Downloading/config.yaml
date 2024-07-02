@@ -14,7 +14,7 @@ kmz_address:
 
 rgb:
   choose: 1
-  path: '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/gully_detection/raw_data/HUC_071100060307/RGB'
+  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/HUCs/HUC_070801030408/data/rgb'
   spec:
     dimension: '2048x2048'
     format: "GEO_TIFF"
@@ -33,7 +33,7 @@ rgb:
 
 dem:
   choose: 1
-  path: '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/gully_detection/raw_data/HUC_071100060307/DEM'
+  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/HUCs/HUC_070801030408/data/dem'
   spec:
     dimension: '2000x2000'
     format: "GEO_TIFF"
@@ -43,7 +43,7 @@ dem:
 
 
 merge:
-  path: '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/gully_detection/raw_data/HUC_071100060307/merged'
+  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/HUCs/HUC_070801030408/data/merged'
   
 
 
