@@ -6,6 +6,12 @@ region:
 
 
 
+kmz_address: 
+  extraction_path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/HUCs/HUC_070801030408'
+  kmz_file_path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/HUCs/HUC_070801030408/SC_070801030408'
+
+
+
 rgb:
   choose: 1
   path: '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/gully_detection/raw_data/HUC_071100060307/RGB'

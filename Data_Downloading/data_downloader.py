@@ -9,6 +9,7 @@ from retry import retry
 import json
 import yaml
 import os
+from utils import *
 
 ee.Initialize(opt_url='https://earthengine-highvolume.googleapis.com')
 
@@ -18,19 +19,37 @@ with open('config.yaml', 'r') as file:
 rgb_path = config['rgb']['path']
 dem_path = config['dem']['path']
 
+extraction_path = config['kmz_address']['extraction_path']
+kmz_file_path = config['kmz_address']['kmz_file_path']
+
+bounding_box_coordinates = main_extracter(kmz_file_path, extraction_path)
+
 os.makedirs(rgb_path, exist_ok=True)
 os.makedirs(dem_path, exist_ok=True)
 
 print(config['rgb']['spec']['filter_dates'])
 # print(f"spec : {len(spec_config['point_1'])}")
 
+# region = ee.Geometry.Polygon(
+#     [
+#         [
+#             config['region']['point_1'],
+#             config['region']['point_2'],
+#             config['region']['point_3'],
+#             config['region']['point_4'],
+#         ]
+#     ],
+#     None,
+#     False,
+# )
+
 region = ee.Geometry.Polygon(
     [
         [
-            config['region']['point_1'],
-            config['region']['point_2'],
-            config['region']['point_3'],
-            config['region']['point_4'],
+            bounding_box_coordinates[0],
+            bounding_box_coordinates[1],
+            bounding_box_coordinates[2],
+            bounding_box_coordinates[3],
         ]
     ],
     None,
