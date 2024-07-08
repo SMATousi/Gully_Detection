@@ -3,10 +3,18 @@ from rasterio.merge import merge
 import glob
 import os
 import yaml
+from utils import *
 
 
 with open('config.yaml', 'r') as file:
     config = yaml.safe_load(file)
+
+placeholders = {
+    'huc_number': config['huc_number']
+}
+
+config = replace_placeholders(config, placeholders)
+
 
 rgb_path = config['rgb']['path']
 dem_path = config['dem']['path']

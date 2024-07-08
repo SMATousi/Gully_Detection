@@ -11,10 +11,18 @@ import yaml
 import os
 from utils import *
 
+
 ee.Initialize(opt_url='https://earthengine-highvolume.googleapis.com')
 
 with open('config.yaml', 'r') as file:
     config = yaml.safe_load(file)
+
+placeholders = {
+    'huc_number': config['huc_number']
+}
+
+config = replace_placeholders(config, placeholders)
+
 
 rgb_path = config['rgb']['path']
 dem_path = config['dem']['path']
@@ -23,6 +31,8 @@ extraction_path = config['kmz_address']['extraction_path']
 kmz_file_path = config['kmz_address']['kmz_file_path']
 
 bounding_box_coordinates = main_extracter(kmz_file_path, extraction_path)
+
+
 
 os.makedirs(rgb_path, exist_ok=True)
 os.makedirs(dem_path, exist_ok=True)

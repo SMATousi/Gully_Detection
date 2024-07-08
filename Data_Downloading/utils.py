@@ -51,3 +51,17 @@ def main_extracter(kmz_path, extraction_root):
     return bounding_box
 
 
+
+def replace_placeholders(data, placeholders):
+    if isinstance(data, dict):
+        for key, value in data.items():
+            data[key] = replace_placeholders(value, placeholders)
+    elif isinstance(data, list):
+        data = [replace_placeholders(item, placeholders) for item in data]
+    elif isinstance(data, str):
+        for key, value in placeholders.items():
+            data = data.replace(f"{{{key}}}", value)
+    return data
+
+
+
