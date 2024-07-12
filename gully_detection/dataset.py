@@ -61,13 +61,9 @@ class SixImageDataset(Dataset):
         if self.transform:
             images = [self.transform(image) for image in images]
         label = torch.tensor(self.labels[idx], dtype=torch.float32)
-        return torch.stack(images), label
+        return images, label
+
     
-
-
-
-
-
 class SixImageDataset_DEM_GT(Dataset):
     def __init__(self, pos_dir, 
                  neg_dir, 
@@ -138,4 +134,4 @@ class SixImageDataset_DEM_GT(Dataset):
             dem_image = self.transform(dem_image)
             gt_mask = self.transform(gt_mask)
         label = torch.tensor(self.labels[idx], dtype=torch.float32)
-        return torch.stack(images), dem_image, gt_mask, label
+        return images, dem_image, gt_mask, label
