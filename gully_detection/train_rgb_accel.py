@@ -98,14 +98,14 @@ def main():
     
     print(device)
     
-    pos_dir = '/home/macula/SMATousi/Gullies/ground_truth/organized_data/All_Pos_Neg/all_pos/rgb_images/'
-    neg_dir = '/home/macula/SMATousi/Gullies/ground_truth/organized_data/All_Pos_Neg/all_neg/rgb_images/'
+    pos_dir = '/root/home/data/All_Pos_Neg/all_pos/rgb_images/'
+    neg_dir = '/root/home/data/All_Pos_Neg/all_neg/rgb_images/'
 
-    pos_dem_dir = '/home/macula/SMATousi/Gullies/ground_truth/organized_data/All_Pos_Neg/all_pos/dem/'
-    neg_dem_dir = '/home/macula/SMATousi/Gullies/ground_truth/organized_data/All_Pos_Neg/all_neg/dem/'
+    pos_dem_dir = '/root/home/data/All_Pos_Neg/all_pos/dem/'
+    neg_dem_dir = '/root/home/data/All_Pos_Neg/all_neg/dem/'
 
-    pos_gt_mask_dir = '/home/macula/SMATousi/Gullies/ground_truth/organized_data/All_Pos_Neg/all_pos/ground_truth/'
-    neg_gt_mask_dir = '/home/macula/SMATousi/Gullies/ground_truth/organized_data/All_Pos_Neg/all_neg/ground_truth/'
+    pos_gt_mask_dir = '/root/home/data/All_Pos_Neg/all_pos/ground_truth/'
+    neg_gt_mask_dir = '/root/home/data/All_Pos_Neg/all_neg/ground_truth/'
 
     
     # dem_dir = '/root/home/data/dem'
