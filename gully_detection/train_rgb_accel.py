@@ -165,7 +165,7 @@ def main():
     # cldice_criterion = CE_CLDICE_Loss_optimized(alpha=arg_alpha, beta=arg_beta)
 
     criterion = nn.BCELoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.0001)
+    optimizer = optim.Adam(mlp_classifier.parameters(), lr=0.0001)
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
     
     model, optimizer, training_dataloader, scheduler = accelerator.prepare(
