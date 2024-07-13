@@ -153,10 +153,10 @@ def main():
     print("Data is loaded")
     
     
-    resnet_extractor = ResNetFeatureExtractor().to(device)
-    mlp_classifier = MLPClassifier(input_size=6*2048, hidden_size=512, output_size=1).to(device)
+    resnet_extractor = ResNetFeatureExtractor()
+    mlp_classifier = MLPClassifier(input_size=6*2048, hidden_size=512, output_size=1)
     
-    
+    model = Gully_Classifier(input_size=6*2048, hidden_size=512, output_size=1)
     
     
     from torch.optim import Adam
@@ -165,7 +165,7 @@ def main():
     # cldice_criterion = CE_CLDICE_Loss_optimized(alpha=arg_alpha, beta=arg_beta)
 
     criterion = nn.BCELoss()
-    optimizer = optim.Adam(mlp_classifier.parameters(), lr=0.0001)
+    optimizer = optim.Adam(model.parameters(), lr=0.0001)
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
     
     model, optimizer, training_dataloader, scheduler = accelerator.prepare(
@@ -186,12 +186,13 @@ def main():
         all_preds = []
         
         
-        for batch in tqdm(train_loader):
+        for batch in tqdm(training_dataloader):
             images, dem_images, gt_masks, labels = batch
     
-            features = [resnet_extractor(image) for image in images]
-            stacked_features = torch.stack(features, dim=1)
-            output = mlp_classifier(stacked_features)
+            # features = [resnet_extractor(image) for image in images]
+            # stacked_features = torch.stack(features, dim=1)
+            # output = mlp_classifier(stacked_features)
+            output = model(images)
             loss = criterion(output.squeeze(), labels)
 
             all_predictions = accelerator.gather(output)
@@ -247,13 +248,14 @@ def main():
         all_preds = []
         with torch.no_grad():
     
-            for batch in tqdm(val_loader):
+            for batch in tqdm(validation_dataloader):
                 images, dem_images, gt_masks, labels = batch
 
 
-                features = [resnet_extractor(image) for image in images]
-                stacked_features = torch.stack(features, dim=1)
-                output = mlp_classifier(stacked_features)
+                # features = [resnet_extractor(image) for image in images]
+                # stacked_features = torch.stack(features, dim=1)
+                # output = mlp_classifier(stacked_features)
+                output = model(images)
                 loss = criterion(output.squeeze(), labels)
 
                 all_predictions = accelerator.gather(output)

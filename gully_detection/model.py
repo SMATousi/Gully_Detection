@@ -45,4 +45,20 @@ class MLPClassifier(nn.Module):
         x = self.fc2(x)
         x = self.sigmoid(x)
         return x
+    
+
+class Gully_Classifier(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(Gully_Classifier, self).__init__()
+        self.feature_extractor = ResNetFeatureExtractor()
+        self.classifier = MLPClassifier(input_size, hidden_size, output_size)
+        
+    def forwrd(self, images):
+
+        features = [self.feature_extractor(image) for image in images]
+        stacked_features = torch.stack(features, dim=1)
+        output = self.classifier(stacked_features)
+
+
+        return output
 
