@@ -229,7 +229,7 @@ def main():
         if accelerator.is_main_process:
 
             if args.logging:
-                wandb.log({'Train/Loss':train_loss.item(),
+                wandb.log({'Train/Loss':train_loss,
                            'Train/Precision': train_precision,
                            'Train/Recall': train_recall,
                            'Train/F1': train_f1,
@@ -285,7 +285,7 @@ def main():
 
                 if args.logging:
 
-                    wandb.log({'Validation/Loss':val_loss.item(),
+                    wandb.log({'Validation/Loss':val_loss,
                            'Validation/Precision': val_precision,
                            'Validation/Recall': val_recall,
                            'Validation/F1': val_f1,
