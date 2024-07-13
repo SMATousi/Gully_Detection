@@ -53,7 +53,7 @@ class Gully_Classifier(nn.Module):
         self.feature_extractor = ResNetFeatureExtractor()
         self.classifier = MLPClassifier(input_size, hidden_size, output_size)
         
-    def forwrd(self, images):
+    def forward(self, images):
 
         features = [self.feature_extractor(image) for image in images]
         stacked_features = torch.stack(features, dim=1)
