@@ -294,7 +294,7 @@ def main():
                     if (epoch + 1) % arg_savingstep == 0:
                         
                         os.makedirs('../saved_models', exist_ok=True)
-                        torch.save(MLPClassifier.state_dict(), f'../saved_models/model_epoch_{epoch+1}.pth')
+                        torch.save(model.state_dict(), f'../saved_models/model_epoch_{epoch+1}.pth')
                         artifact = wandb.Artifact(f'model_epoch_{epoch+1}', type='model')
                         artifact.add_file(f'../saved_models/model_epoch_{epoch+1}.pth')
                         wandb.log_artifact(artifact)
