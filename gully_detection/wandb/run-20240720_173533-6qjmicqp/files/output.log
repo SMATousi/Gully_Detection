@@ -1,0 +1,534 @@
+
+[34m[1mwandb[39m[22m: Downloading large artifact model_epoch_100:v0, 114.00MB. 1 files...
+[34m[1mwandb[39m[22m:   1 of 1 files downloaded.
+Done. 0:0:16.2
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:209: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  f"The parameter '{pretrained_param}' is deprecated since 0.13 and may be removed in the future, "
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+tensor([[0.0010]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+  4%|███▋                                                                                         | 10/256 [00:01<00:29,  8.38it/s]
+tensor([[0.7117]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9006]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[3.4033e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.1196e-08]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9678]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0016]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9636]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0027]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9976]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[3.6089e-08]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[4.7555e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[9.5533e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.1312]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.7206e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[2.0140e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9949]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.2483]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.1443]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+
+  9%|████████▎                                                                                    | 23/256 [00:02<00:25,  8.99it/s]
+tensor([[0.7988]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0031]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9949]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0014]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+tensor([[0.3626]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.0000]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.4024e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[5.3329e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[2.2829e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.1196e-08]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.0000]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[5.1531e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9984]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.1483]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[9.4481e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0459]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[9.1114e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9906]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0096]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9824]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0001]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[8.0221e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0011]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[7.4516e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[3.1976e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[2.3225e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.2197]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[4.2268e-08]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9526]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[4.0273e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[3.3403e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.3256]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0161]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0041]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0002]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9063]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0001]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0001]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[4.4082e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9688]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[2.0893e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.0000]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0002]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[9.1524e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.0000]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0014]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0027]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9961]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.2087]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0050]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[4.9258e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.7003e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[9.5533e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[6.1886e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0001]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9955]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0010]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.2694]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0234]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0027]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.0000]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0063]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0416]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.1246]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9976]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0042]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.7182]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[8.3775e-08]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.7101]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.4035]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0006]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0006]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.8172]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[2.0140e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.5880]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0007]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[3.6089e-08]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[3.7114e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0258]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9837]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.5166e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9951]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0289]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0009]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9757]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0054]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0005]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[5.4776e-09]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0029]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0049]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.1268]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.4439]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[5.7738e-09]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0396]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[2.3915e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9996]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.6549]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.2244]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[4.0162e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.3634]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0135]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[3.4033e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.7836e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0016]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.7988]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.7677]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.8444]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9998]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.8880e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0002]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.7409]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.4808]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0037]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0014]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9292]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.4555]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.7350]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9996]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9695]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[2.0747e-08]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[7.0379e-09]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0039]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[2.1520e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.3907e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0014]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0002]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0028]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.6590]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9591]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0002]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.5527e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0964]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9991]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9843]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.1312]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[8.1600e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.1443]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.1284]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0003]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[5.4154e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0002]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0006]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9991]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9636]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[4.7555e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.7906]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.5292]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0063]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0010]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.1810e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9704]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[6.7508e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9006]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0031]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.1112]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[4.3071e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.1772]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0002]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9949]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0008]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0023]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.2483]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[6.6667e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.7080]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[7.0293e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.1234e-08]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.2888]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0134]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0011]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[4.4508e-10]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0120]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0723]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9673]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.2018]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0010]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0007]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0034]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.4449e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[3.1354e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0201]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.8171]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9678]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0091]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.2790e-08]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[4.4287e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0853]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.5104]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9928]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0119]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0756]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0163]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0101]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.7117]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0010]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0015]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[3.0625e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0009]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.8977]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0491]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.2242]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[3.6073e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9568]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.2044]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[9.6269e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.6881]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.9709e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.0000]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9953]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0009]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9126]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[3.3893e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.4690e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.7297]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[2.1626e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[4.0639e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0014]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0014]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.1312]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[7.4986e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.4295e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.5067e-07]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.7206e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[5.6929e-06]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0006]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0051]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0073]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9319]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[2.2339e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9949]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9935]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[6.2967e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0322]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9800]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9651]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0101]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[2.5400e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[4.2385e-08]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.1648e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0002]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.6617]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0188]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9996]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9763]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0004]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0004]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9957]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[8.4703e-08]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.1592]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0012]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.9172]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.6310e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.7459]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[8.6178e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.0003]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.1583]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.7768]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[0.8722]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[1.8992e-05]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+tensor([[3.4847e-08]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+100%|████████████████████████████████████████████████████████████████████████████████████████████| 256/256 [00:53<00:00,  4.76it/s]
+Merge completed successfully. Output saved at: /home/macula/SMATousi/Gullies/SO_Paper/data/Ellis/merged_classification_results.tif
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+float32
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+256
+[[0.00104069]]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+0.00016048734
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+0.0029291501
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+0.023405608
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+0.00029718055
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+0.00037362764
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+256
+0.005114355
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+0.039570246
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+1.0
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+0.0039391606
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:209: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  f"The parameter '{pretrained_param}' is deprecated since 0.13 and may be removed in the future, "
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+256
+0.0011001591
+scalar
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+256
+0.0005874173
+scalar
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+  2%|█▍                                                                                            | 4/256 [00:00<00:56,  4.43it/s]
+256
+scalar
+scalar
+scalar
+scalar
+scalar
+scalar
+scalar
+
+  4%|███▋                                                                                         | 10/256 [00:02<00:58,  4.17it/s]
+scalar
+scalar
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 217.71289
+Overall Standard Deviation: 1.9757788
+cuda
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+100%|████████████████████████████████████████████████████████████████████████████████████████████| 256/256 [01:03<00:00,  4.02it/s]
+Merge completed successfully. Output saved at: /home/macula/SMATousi/Gullies/SO_Paper/data/Ellis/merged_classification_results.tif
+  0%|                                                                                                      | 0/256 [00:00<?, ?it/s]
+Overall Mean: 216.95895
+Overall Standard Deviation: 1.2407522
+cuda
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+100%|████████████████████████████████████████████████████████████████████████████████████████████| 256/256 [01:11<00:00,  3.57it/s]
+Merge completed successfully. Output saved at: /home/macula/SMATousi/Gullies/SO_Paper/data/Gotman/merged_classification_results.tif

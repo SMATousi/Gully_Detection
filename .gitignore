@@ -21,3 +21,4 @@ rad.json
 #Test results file
 TestResults.xml
 gully_detection/*.onnx
+gully_detection/artifacts/*
