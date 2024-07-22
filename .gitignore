@@ -22,3 +22,4 @@ rad.json
 TestResults.xml
 gully_detection/*.onnx
 gully_detection/artifacts/*
+gully_detection/wandb/*
