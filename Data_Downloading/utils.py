@@ -34,7 +34,8 @@ def get_bounding_box_from_kml(kml_path):
             for coord in polygon.findall('.//kml:coordinates', namespaces):
                 coords_text = coord.text.strip()
                 for coord_pair in coords_text.split():
-                    lon, lat, _ = map(float, coord_pair.split(','))
+                    print(coord_pair.split(','))
+                    lon, lat = map(float, coord_pair.split(','))
                     coordinates.append((lat, lon))
     
     # Calculate the bounding box
