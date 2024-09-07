@@ -60,11 +60,11 @@ def split_and_copy_tiles(pos_dir, neg_dir, output_dir, test_size=450):
 
 if __name__ == "__main__":
     # Define the source directories for pos and neg images
-    pos_dir = "/home/macula/SMATousi/Gullies/ground_truth/organized_data/MO_Pos_Neg_Dataset/all_pos/rgb_images"
-    neg_dir = "/home/macula/SMATousi/Gullies/ground_truth/organized_data/MO_Pos_Neg_Dataset/all_neg/rgb_images"
+    pos_dir = "/home/macula/SMATousi/Gullies/ground_truth/organized_data/MO+IA__Test_data/all_pos/rgb_images"
+    neg_dir = "/home/macula/SMATousi/Gullies/ground_truth/organized_data/MO+IA__Test_data/all_neg/rgb_images"
 
     # Define the output directory
-    output_dir = "/home/macula/SMATousi/Gullies/ground_truth/organized_data/MO_Pos_Neg_Dataset/divided_data"
+    output_dir = "/home/macula/SMATousi/Gullies/ground_truth/organized_data/MO+IA__Test_data/divided_data"
 
     # Split and copy tiles
     split_and_copy_tiles(pos_dir, neg_dir, output_dir)
