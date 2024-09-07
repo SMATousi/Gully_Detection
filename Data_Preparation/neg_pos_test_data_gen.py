@@ -17,9 +17,10 @@ def copy_tile_images(src_dir, dest_dir, tile_number, pos_or_neg):
         else:
             print(f"Warning: {src_file} does not exist!")
 
-def split_and_copy_tiles(pos_dir, neg_dir, output_dir, test_size=450):
+def split_and_copy_tiles(pos_dir, neg_dir, output_dir, test_size=450, learn_size=50):
     # Create directories for the split
     test_data_dir = os.path.join(output_dir, 'test_data')
+    learn_data_dir = os.path.join(output_dir, 'learn_data')
     # pos_test_dir = os.path.join(test_data_dir, 'pos')
     # neg_test_dir = os.path.join(test_data_dir, 'neg')
 
@@ -43,14 +44,23 @@ def split_and_copy_tiles(pos_dir, neg_dir, output_dir, test_size=450):
     neg_test_tiles = neg_tiles[:test_size]
 
     # The remaining tiles go to their respective directories
-    pos_remaining_tiles = pos_tiles[test_size:]
-    neg_remaining_tiles = neg_tiles[test_size:]
+
+    pos_learn_tiles = pos_tiles[test_size:test_size+learn_size]
+    neg_learn_tiles = neg_tiles[test_size:test_size+learn_size]
+    
+    pos_remaining_tiles = pos_tiles[test_size+learn_size:]
+    neg_remaining_tiles = neg_tiles[test_size+learn_size:]
 
     # Copy test tiles (and their 6 images each) to test_data/pos and test_data/neg
     for tile in tqdm(pos_test_tiles):
         copy_tile_images(pos_dir, test_data_dir, tile, 'pos')
     for tile in tqdm(neg_test_tiles):
         copy_tile_images(neg_dir, test_data_dir, tile, 'neg')
+
+    for tile in tqdm(pos_learn_tiles):
+        copy_tile_images(pos_dir, learn_data_dir, tile, 'pos')
+    for tile in tqdm(neg_learn_tiles):
+        copy_tile_images(neg_dir, learn_data_dir, tile, 'neg')
 
     # Copy remaining tiles (and their 6 images each) to pos_data and neg_data
     for tile in tqdm(pos_remaining_tiles):
