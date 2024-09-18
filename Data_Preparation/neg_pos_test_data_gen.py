@@ -17,7 +17,7 @@ def copy_tile_images(src_dir, dest_dir, tile_number, pos_or_neg):
         else:
             print(f"Warning: {src_file} does not exist!")
 
-def split_and_copy_tiles(pos_dir, neg_dir, output_dir, test_size=450, learn_size=50):
+def split_and_copy_tiles(pos_dir, neg_dir, output_dir, test_size=450, learn_size=25):
     # Create directories for the split
     test_data_dir = os.path.join(output_dir, 'test_data')
     learn_data_dir = os.path.join(output_dir, 'learn_data')
