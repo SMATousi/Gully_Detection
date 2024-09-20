@@ -1,0 +1,26 @@
+Tile Index =   [1]    Number 570: label = 4 (Labeled by Ali)
+Tile Index =   [2]    Number 508: Krystal label = 1, Dr. Lory label = 0
+Tile Index =   [3]    Number 388: label = 4
+Tile Index =   [4]    Number 258: Krystal label = 3, Dr. Lory label = 1
+Tile Index =   [5]    Number 113: Krystal label = 0; Dr. Lory label = 3
+Tile Index =   [6]    Number 1069: label = 0
+Tile Index =   [7]    Number 591: label = 4
+Tile Index =   [8]    Number 238: Krystal label = 4; Dr. Lory label = 3
+Tile Index =   [9]    Number 638: Krystal label = 4; Dr. Lory label = 0
+Tile Index =   [10]    Number 321: Krystal label = 1; Dr. Lory label = 0
+Tile Index =   [11]    Number 680: Krystal label = 3; Dr. Lory label = 1
+Tile Index =   [12]    Number 477: label = 0
+Tile Index =   [13]    Number 262: label = 0
+Tile Index =   [14]    Number 66: label = 4
+Tile Index =   [15]    Number 961: Krystal label = 4; Dr. Lory label = 3
+Tile Index =   [16]    Number 936: label = 4
+Tile Index =   [17]    Number 245: label = 4
+Tile Index =   [18]    Number 548: label = 4
+Tile Index =   [19]    Number 800: label = 0
+Tile Index =   [20]    Number 18: label = 4
+Tile Index =   [21]    Number 1060: label = 0
+Tile Index =   [22]    Number 363: label = 4
+Tile Index =   [23]    Number 738: label = 4
+Tile Index =   [24]    Number 1136: Krystal label = 2; Dr. Lory label = 1
+Tile Index =   [25]    Number 974: label = 4
+
