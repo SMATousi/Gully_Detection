@@ -23,4 +23,4 @@ TestResults.xml
 gully_detection/*.onnx
 gully_detection/artifacts/*
 gully_detection/wandb/*
-weak-supervision/trained_models
+weak-supervision/trained_models/
