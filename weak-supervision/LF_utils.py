@@ -18,6 +18,11 @@ from utils import *
 from sklearn.metrics import precision_score, recall_score, f1_score
 import cv2
 from collections import Counter
+import matplotlib.pyplot as plt
+from skimage import segmentation, measure, morphology
+from skimage.draw import polygon_perimeter
+from skimage.measure import regionprops, label
+from scipy.spatial import ConvexHull
 
 
 def visualize_images_torch(images):
@@ -104,3 +109,104 @@ def check_repetitive_lines(line_coords, repetition_threshold=2, tolerance=5):
             return 1
     return 0
 
+def generate_superpixels(image, num_segments):
+    """
+    Generate superpixels from an input image using the SLIC algorithm.
+
+    Parameters:
+    - image: Input image (numpy array).
+    - num_segments: The number of superpixels to generate.
+
+    Returns:
+    - segmented_image: The image with superpixel segmentation.
+    - segments: The array of superpixel labels.
+    """
+    # Apply the SLIC algorithm to segment the image into superpixels
+    segments = segmentation.slic(image, n_segments=num_segments, compactness=10, start_label=1)
+
+    # Create a border around each superpixel for visualization
+    segmented_image = segmentation.mark_boundaries(image, segments)
+    
+    return segmented_image, segments
+
+
+def classify_superpixel_shape(segments, circularity_thresh=0.5, aspect_ratio_thresh=2.0):
+    """
+    Classify superpixels based on their shape into round or elongated.
+
+    Parameters:
+    - segments: The array of superpixel labels.
+
+    Returns:
+    - round_superpixels: List of labels for round superpixels.
+    - elongated_superpixels: List of labels for elongated superpixels.
+    """
+    # Label the superpixel regions
+    labeled_segments = label(segments)
+
+    round_superpixels = []
+    elongated_superpixels = []
+
+    # Measure properties of each superpixel
+    for region in regionprops(labeled_segments):
+        # Get the coordinates of the superpixel's convex hull
+        coords = region.coords
+        if len(coords) < 3:
+            continue  # Skip superpixels that are too small to analyze
+        
+        hull = ConvexHull(coords)
+        
+        # Calculate circularity: 4π * Area / Perimeter²
+        area = region.area
+        perimeter = region.perimeter
+        circularity = (4 * np.pi * area) / (perimeter ** 2)
+        
+        # Calculate aspect ratio: Major axis length / Minor axis length
+        aspect_ratio = region.major_axis_length / region.minor_axis_length if region.minor_axis_length > 0 else np.inf
+
+        # Classify based on circularity and aspect ratio
+        if circularity > circularity_thresh and aspect_ratio < aspect_ratio_thresh:
+            round_superpixels.append(region.label)
+        else:
+            elongated_superpixels.append(region.label)
+
+    return round_superpixels, elongated_superpixels
+
+
+
+def display_superpixels_with_classification(original_image, segments, round_superpixels, elongated_superpixels):
+    """
+    Display the original image with the classified superpixels.
+
+    Parameters:
+    - original_image: The original input image.
+    - segments: The superpixel segmentation.
+    - round_superpixels: List of round superpixel labels.
+    - elongated_superpixels: List of elongated superpixel labels.
+    """
+    # Create a copy of the original image to overlay the classifications
+    image_with_classification = np.copy(original_image)
+
+    # Mark round superpixels in green and elongated superpixels in red
+    for region_label in round_superpixels:
+        coords = np.argwhere(segments == region_label)
+        rr, cc = polygon_perimeter(coords[:, 0], coords[:, 1], shape=image_with_classification.shape[:2], clip=True)
+        image_with_classification[rr, cc] = [0, 255, 0]  # Green border for round superpixels
+
+    for region_label in elongated_superpixels:
+        coords = np.argwhere(segments == region_label)
+        rr, cc = polygon_perimeter(coords[:, 0], coords[:, 1], shape=image_with_classification.shape[:2], clip=True)
+        image_with_classification[rr, cc] = [255, 0, 0]  # Red border for elongated superpixels
+
+    # Plot original and segmented images
+    fig, ax = plt.subplots(1, 2, figsize=(12, 6))
+
+    ax[0].imshow(original_image)
+    ax[0].set_title('Original Image')
+    ax[0].axis('off')
+
+    ax[1].imshow(image_with_classification)
+    ax[1].set_title('Superpixel Classification')
+    ax[1].axis('off')
+
+    plt.show()
