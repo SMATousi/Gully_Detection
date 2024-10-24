@@ -27,10 +27,10 @@ config = replace_placeholders(config, placeholders)
 rgb_path = config['rgb']['path']
 dem_path = config['dem']['path']
 
-extraction_path = config['kmz_address']['extraction_path']
-kmz_file_path = config['kmz_address']['kmz_file_path']
+# extraction_path = config['kmz_address']['extraction_path']
+# kmz_file_path = config['kmz_address']['kmz_file_path']
 
-bounding_box_coordinates = get_bounding_box_from_kml(extraction_path)
+# bounding_box_coordinates = get_bounding_box_from_kml(extraction_path)
 # bounding_box_coordinates = main_extracter(kmz_file_path, extraction_path)
 
 

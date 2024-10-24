@@ -1,11 +1,11 @@
 region:
-  point_1: [-92.20260,39.28553] 
-  point_2: [-92.05966,39.16790]
-  point_3: [-92.22560,39.08444]
-  point_4: [-92.31892,39.18498]
+  point_1: [39.206660,-91.624637] 
+  point_2: [39.203940,-91.621005]
+  point_3: [39.201934,-91.624880]
+  point_4: [39.204700,-91.627798]
 
 
-huc_number: &huc_number '102801011601'
+huc_number: &huc_number '14'
 
 kmz_address: 
   extraction_path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/SCs_to_download/SC_{huc_number}.kml'
@@ -15,7 +15,7 @@ kmz_address:
 
 rgb:
   choose: 1
-  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/Google_Lines_Paper_Evaluation/downloaded_raw/rgb/'
+  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/Google_Lines_Paper_Evaluation/downloaded_raw_{huc_number}/rgb/'
   spec:
     dimension: '2048x2048'
     format: "GEO_TIFF"
@@ -34,7 +34,7 @@ rgb:
 
 dem:
   choose: 1
-  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/Google_Lines_Paper_Evaluation/downloaded_raw/dem'
+  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/Google_Lines_Paper_Evaluation/downloaded_raw_{huc_number}/dem'
   spec:
     dimension: '2000x2000'
     format: "GEO_TIFF"
@@ -44,7 +44,7 @@ dem:
 
 
 merge:
-  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/Google_Lines_Paper_Evaluation/downloaded_raw/merged'
+  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/Google_Lines_Paper_Evaluation/downloaded_raw_{huc_number}/merged'
   
 
 
