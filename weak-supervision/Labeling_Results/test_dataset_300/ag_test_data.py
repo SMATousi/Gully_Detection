@@ -51,8 +51,8 @@ def list_all_tiles(labeler_data):
     
     print("\nList of all tile numbers with at least one label:")
     for tile, labelers in all_tiles.items():
-        print(f"Tile {tile} labeled by: {', '.join(labelers)}")
-        # continue
+        # print(f"Tile {tile} labeled by: {', '.join(labelers)}")
+        continue
     
     return all_tiles
 
