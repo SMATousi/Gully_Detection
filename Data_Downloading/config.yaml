@@ -1,11 +1,11 @@
 region:
-  point_1: [39.206660,-91.624637] 
-  point_2: [39.203940,-91.621005]
-  point_3: [39.201934,-91.624880]
-  point_4: [39.204700,-91.627798]
+  point_1: [39.260215,-92.190097] 
+  point_2: [39.264652,-92.181670]
+  point_3: [39.259367,-92.144871]
+  point_4: [39.254430,-92.148810]
 
 
-huc_number: &huc_number '14'
+huc_number: &huc_number '15'
 
 kmz_address: 
   extraction_path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/SCs_to_download/SC_{huc_number}.kml'
