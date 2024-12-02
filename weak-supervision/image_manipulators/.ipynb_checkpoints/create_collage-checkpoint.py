@@ -84,8 +84,8 @@ def create_collage(images, grid_rows, grid_cols, image_path, padding=10):
     
 
 
-folder_path = "/home/macula/SMATousi/Gullies/ground_truth/organized_data/All_Pos_Neg/combined_rgb_folder"
-folder_to_save='/home/macula/SMATousi/Gullies/ground_truth/organized_data/All_Pos_Neg/combined_rgb_folder_collage'
+folder_path = "/home/macula/SMATousi/Gullies/ground_truth/organized_data/All_Pos_Neg/combined_folder_true_rgb"
+folder_to_save='/home/macula/SMATousi/Gullies/ground_truth/organized_data/All_Pos_Neg/combined_rgb_folder_collage_true'
 os.makedirs(folder_to_save, exist_ok=True)
 
 grouped_images = group_images_by_ending_number(folder_path)
