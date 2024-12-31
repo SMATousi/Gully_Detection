@@ -174,8 +174,6 @@ def main():
                 accelerator.backward(loss)
                 optimizer.step()
 
-                total_train_loss += loss.item()
-
                 preds = torch.round(all_predictions.squeeze()).detach().cpu().numpy()
                 all_labels.extend(all_targets.cpu().numpy())
                 all_preds.extend(preds)
