@@ -261,6 +261,13 @@ def main():
 
         accelerator.wait_for_everyone()
 
+        if accelerator.is_main_process:
+
+            if args.logging:
+
+                wandb.finish()
+
+
     # Calculate average metrics
     avg_train_metrics = {key: np.mean([np.mean(fold[0][key]) for fold in fold_metrics]) for key in fold_metrics[0][0]}
     avg_val_metrics = {key: np.mean([np.mean(fold[1][key]) for fold in fold_metrics]) for key in fold_metrics[0][1]}
