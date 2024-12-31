@@ -128,7 +128,7 @@ def main():
         # Initialize resnet_extractor and mlp_classifier
         resnet_extractor = ResNetFeatureExtractor()
         resnet_extractor.eval()  # Ensure resnet_extractor is always in eval mode
-        mlp_classifier = MLPClassifier(input_size=resnet_extractor.output_size, hidden_size=512, output_size=1)
+        mlp_classifier = MLPClassifier(input_size=6*2048, hidden_size=512, output_size=1)
 
         # Wrap mlp_classifier with accelerator
         mlp_classifier = accelerator.prepare(mlp_classifier)
