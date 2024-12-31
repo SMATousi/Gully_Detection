@@ -11,6 +11,9 @@ from accelerate.utils import DistributedDataParallelKwargs
 from dataset import SixImageDataset_DEM_GT
 from model import ResNetFeatureExtractor, MLPClassifier
 import argparse
+from model import *
+from dataset import *
+from utils import *
 from tqdm import tqdm
 
 # random.seed(0)
