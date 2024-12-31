@@ -159,11 +159,12 @@ def main():
             all_labels = []
             all_preds = []
 
-            for batch in tqdm(train_loader):
+            for batch in tqdm(training_dataloader):
                 images, dem_images, gt_masks, labels = batch
 
                 output = model(images)
                 loss = criterion(output.squeeze(), labels)
+
                 total_loss += loss.item()
 
                 all_predictions = accelerator.gather(output)
@@ -212,14 +213,13 @@ def main():
             all_preds = []
 
             with torch.no_grad():
-                for batch in tqdm(val_loader):
+                for batch in tqdm(validation_dataloader):
                     images, dem_images, gt_masks, labels = batch
 
                     # Extract features using resnet_extractor
                     output = model(images)
 
                     # Forward pass through mlp_classifier
-                    output = mlp_classifier(features)
                     loss = criterion(output.squeeze(), labels)
 
                     all_predictions = accelerator.gather(output)
