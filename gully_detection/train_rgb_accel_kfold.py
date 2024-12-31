@@ -9,7 +9,7 @@ from torchvision import transforms
 from accelerate import Accelerator
 from accelerate.utils import DistributedDataParallelKwargs
 from dataset import SixImageDataset_DEM_GT
-from model import Gully_Classifier
+from model import ResNetFeatureExtractor, MLPClassifier
 import argparse
 from tqdm import tqdm
 
@@ -19,110 +19,10 @@ torch.manual_seed(0)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-
-# Define a function to train and evaluate on a fold
-def train_and_evaluate(train_loader, val_loader, model, criterion, optimizer, accelerator, epochs):
-    train_metrics = {'loss': 0, 'precision': 0, 'recall': 0, 'f1': 0}
-    val_metrics = {'loss': 0, 'precision': 0, 'recall': 0, 'f1': 0}
-
-    for epoch in range(epochs):
-        model.resnet_extractor.eval()  # Feature extractor should be in eval mode
-        model.mlp_classifier.train()
-        
-        total_loss = 0
-        all_labels = []
-        all_preds = []
-
-        # Training Loop
-        model.train()
-        for batch in tqdm(train_loader):
-            images, dem_images, gt_masks, labels = batch
-            output = model(images)
-            loss = criterion(output.squeeze(), labels)
-
-            total_loss += loss.item()
-
-            all_predictions = accelerator.gather(output)
-            all_targets = accelerator.gather(labels)
-
-            preds = torch.round(all_predictions.squeeze()).detach().cpu().numpy()
-            all_labels.extend(all_targets.cpu().numpy())
-            all_preds.extend(preds)
-
-            optimizer.zero_grad()
-            accelerator.backward(loss)
-            optimizer.step()
-
-            if arg_nottest:
-                continue
-            else:
-                break
-
-
-            # preds = torch.round(output.squeeze()).detach().cpu().numpy()
-            # labels_np = labels.cpu().numpy()
-
-        train_metrics['loss'] = total_loss / len(train_loader)
-        train_metrics['precision'] = precision_score(all_labels, all_preds, zero_division=0)
-        train_metrics['recall'] = recall_score(all_labels, all_preds, zero_division=0)
-        train_metrics['f1'] = f1_score(all_labels, all_preds, zero_division=0)
-
-        if accelerator.is_main_process:
-
-            if args.logging:
-                wandb.log({'Train/Loss':train_metrics['loss'],
-                           'Train/Precision': train_metrics['precision'],
-                           'Train/Recall': train_metrics['recall'],
-                           'Train/F1': train_metrics['f1'],
-                           'Train/Epoch': epoch})
-
-        # Validation Loop
-        model.eval()
-        total_loss = 0
-        all_labels = []
-        all_preds = []
-        with torch.no_grad():
-            for batch in tqdm(val_loader):
-                images, dem_images, gt_masks, labels = batch
-                output = model(images)
-                loss = criterion(output.squeeze(), labels)
-                total_loss += loss.item()
-
-                all_predictions = accelerator.gather(output)
-                all_targets = accelerator.gather(labels)
-                preds = torch.round(all_predictions.squeeze()).detach().cpu().numpy()
-                all_labels.extend(all_targets.cpu().numpy())
-                all_preds.extend(preds)
-
-                if arg_nottest:
-                    continue
-                else:
-                    break
-
-                # preds = torch.round(output.squeeze()).detach().cpu().numpy()
-                # labels_np = labels.cpu().numpy()
-
-            val_metrics['loss'] = total_loss / len(val_loader)
-            val_metrics['precision'] = precision_score(all_labels, all_preds, zero_division=0)
-            val_metrics['recall'] = recall_score(all_labels, all_preds, zero_division=0)
-            val_metrics['f1'] = f1_score(all_labels, all_preds, zero_division=0)
-
-            if accelerator.is_main_process:
-
-                if args.logging:
-                    wandb.log({'Train/Loss':val_metrics['loss'],
-                            'Train/Precision': val_metrics['precision'],
-                            'Train/Recall': val_metrics['recall'],
-                            'Train/F1': val_metrics['f1'],
-                            'Train/Epoch': epoch})
-
-        # for key in val_metrics:
-        #     val_metrics[key] /= len(val_loader)
-
-    return train_metrics, val_metrics
-
-
 def main():
+
+    
+
 
     kwargs = DistributedDataParallelKwargs(find_unused_parameters=True)
     accelerator = Accelerator(kwargs_handlers=[kwargs])
@@ -163,16 +63,18 @@ def main():
     arg_alpha = args.alpha
     arg_beta = args.beta
 
+    
     if args.nottest:
         arg_nottest = True 
     else:
         arg_nottest = False
-
-
+    
+    
     args = parser.parse_args()
 
     
-
+    
+    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     device = accelerator.device
     
     print(device)
@@ -196,7 +98,7 @@ def main():
     )
 
     kfold = KFold(n_splits=10, shuffle=True, random_state=0)
-    
+
     fold_metrics = []
     for fold, (train_idx, val_idx) in enumerate(kfold.split(full_dataset)):
         print(f"Starting Fold {fold + 1}")
@@ -223,33 +125,144 @@ def main():
         train_loader = DataLoader(train_subset, batch_size=args.batchsize, shuffle=True)
         val_loader = DataLoader(val_subset, batch_size=args.batchsize, shuffle=False)
 
+        # Initialize resnet_extractor and mlp_classifier
+        resnet_extractor = ResNetFeatureExtractor()
+        resnet_extractor.eval()  # Ensure resnet_extractor is always in eval mode
+        mlp_classifier = MLPClassifier(input_size=resnet_extractor.output_size, hidden_size=512, output_size=1)
+
+        # Wrap mlp_classifier with accelerator
+        mlp_classifier = accelerator.prepare(mlp_classifier)
+
         model = Gully_Classifier(input_size=6*2048, hidden_size=512, output_size=1)
-        # model = accelerator.prepare(model)
 
         criterion = nn.BCELoss()
         optimizer = optim.Adam(model.parameters(), lr=0.0001)
         scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
-        
+
         model, optimizer, training_dataloader, scheduler = accelerator.prepare(
-            model, optimizer, train_loader, scheduler
+        model, optimizer, train_loader, scheduler
         )
         validation_dataloader = accelerator.prepare(val_loader)
 
-        train_metrics, val_metrics = train_and_evaluate(training_dataloader, 
-                                                        validation_dataloader, 
-                                                        model, 
-                                                        criterion, 
-                                                        optimizer, 
-                                                        accelerator, 
-                                                        arg_epochs)
+        train_metrics = {'loss': [], 'precision': [], 'recall': [], 'f1': []}
+        val_metrics = {'loss': [], 'precision': [], 'recall': [], 'f1': []}
+
+        for epoch in range(args.epochs):
+            # Training
+            resnet_extractor.eval()  # Feature extractor should be in eval mode
+            mlp_classifier.train()
+            
+            total_loss = 0
+            all_labels = []
+            all_preds = []
+
+            for batch in tqdm(train_loader):
+                images, dem_images, gt_masks, labels = batch
+
+                output = model(images)
+                loss = criterion(output.squeeze(), labels)
+                total_loss += loss.item()
+
+                all_predictions = accelerator.gather(output)
+                all_targets = accelerator.gather(labels)
+
+                optimizer.zero_grad()
+                accelerator.backward(loss)
+                optimizer.step()
+
+                total_train_loss += loss.item()
+
+                preds = torch.round(all_predictions.squeeze()).detach().cpu().numpy()
+                all_labels.extend(all_targets.cpu().numpy())
+                all_preds.extend(preds)
+
+                if arg_nottest:
+                    continue
+                else:
+                    break
+
+            train_loss = total_loss / len(train_loader)
+            train_precision = precision_score(all_labels, all_preds)
+            train_recall = recall_score(all_labels, all_preds)
+            train_f1 = f1_score(all_labels, all_preds)
+
+            if accelerator.is_main_process:
+
+                if args.logging:
+                    wandb.log({'Train/Loss':train_loss,
+                            'Train/Precision': train_precision,
+                            'Train/Recall': train_recall,
+                            'Train/F1': train_f1,
+                            'Train/Epoch': epoch})
+
+            train_metrics['loss'].append(train_loss)
+            train_metrics['precision'].append(train_precision)
+            train_metrics['recall'].append(train_recall)
+            train_metrics['f1'].append(train_f1)
+
+            # Validation Loop
+            mlp_classifier.eval()
+            model.eval()
+
+            total_loss = 0
+            all_labels = []
+            all_preds = []
+
+            with torch.no_grad():
+                for batch in tqdm(val_loader):
+                    images, dem_images, gt_masks, labels = batch
+
+                    # Extract features using resnet_extractor
+                    output = model(images)
+
+                    # Forward pass through mlp_classifier
+                    output = mlp_classifier(features)
+                    loss = criterion(output.squeeze(), labels)
+
+                    all_predictions = accelerator.gather(output)
+                    all_targets = accelerator.gather(labels)
+        
+                    total_loss += loss.item()
+
+                    preds = torch.round(all_predictions.squeeze()).detach().cpu().numpy()
+                    all_labels.extend(all_targets.cpu().numpy())
+                    all_preds.extend(preds)
+
+                    if arg_nottest:
+                            continue
+                    else:
+                        break
+
+            val_loss = total_loss / len(val_loader)
+            val_precision = precision_score(all_labels, all_preds)
+            val_recall = recall_score(all_labels, all_preds)
+            val_f1 = f1_score(all_labels, all_preds)
+
+            if accelerator.is_main_process:
+
+                if args.logging:
+
+                    wandb.log({'Validation/Loss':val_loss,
+                           'Validation/Precision': val_precision,
+                           'Validation/Recall': val_recall,
+                           'Validation/F1': val_f1,
+                           'Validation/Epoch': epoch})
+
+            val_metrics['loss'].append(val_loss)
+            val_metrics['precision'].append(val_precision)
+            val_metrics['recall'].append(val_recall)
+            val_metrics['f1'].append(val_f1)
+
+            print(f"Epoch {epoch + 1}/{args.epochs} - Train Loss: {train_loss}, Train Precision: {train_precision}, Train Recall: {train_recall}, Train F1: {train_f1}")
+            print(f"Epoch {epoch + 1}/{args.epochs} - Val Loss: {val_loss}, Val Precision: {val_precision}, Val Recall: {val_recall}, Val F1: {val_f1}")
 
         fold_metrics.append((train_metrics, val_metrics))
 
-        print(f"Fold {fold + 1} - Train Metrics: {train_metrics}, Validation Metrics: {val_metrics}")
+        accelerator.wait_for_everyone()
 
     # Calculate average metrics
-    avg_train_metrics = {key: np.mean([fold[0][key] for fold in fold_metrics]) for key in fold_metrics[0][0]}
-    avg_val_metrics = {key: np.mean([fold[1][key] for fold in fold_metrics]) for key in fold_metrics[0][1]}
+    avg_train_metrics = {key: np.mean([np.mean(fold[0][key]) for fold in fold_metrics]) for key in fold_metrics[0][0]}
+    avg_val_metrics = {key: np.mean([np.mean(fold[1][key]) for fold in fold_metrics]) for key in fold_metrics[0][1]}
 
     print("Average Train Metrics:", avg_train_metrics)
     print("Average Validation Metrics:", avg_val_metrics)
