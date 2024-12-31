@@ -109,12 +109,12 @@ def train_and_evaluate(train_loader, val_loader, model, criterion, optimizer, ac
 
             if accelerator.is_main_process:
 
-            if args.logging:
-                wandb.log({'Train/Loss':val_metrics['loss'],
-                           'Train/Precision': val_metrics['precision'],
-                           'Train/Recall': val_metrics['recall'],
-                           'Train/F1': val_metrics['f1'],
-                           'Train/Epoch': epoch})
+                if args.logging:
+                    wandb.log({'Train/Loss':val_metrics['loss'],
+                            'Train/Precision': val_metrics['precision'],
+                            'Train/Recall': val_metrics['recall'],
+                            'Train/F1': val_metrics['f1'],
+                            'Train/Epoch': epoch})
 
         # for key in val_metrics:
         #     val_metrics[key] /= len(val_loader)
