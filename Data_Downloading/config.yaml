@@ -1,22 +1,23 @@
 region:
-  point_1: [39.260215,-92.190097] 
-  point_2: [39.264652,-92.181670]
-  point_3: [39.259367,-92.144871]
-  point_4: [39.254430,-92.148810]
+  point_1: [40.465274,-94.680294] 
+  point_2: [40.465837,-94.636896]
+  point_3: [40.443150,-94.644243]
+  point_4: [40.439484,-94.687236]
 
 
 huc_number: &huc_number '15'
 
 kmz_address: 
-  extraction_path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/SCs_to_download/SC_{huc_number}.kml'
-  kmz_file_path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/SCs_to_download/SC_{huc_number}.kml'
+  extraction_path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/highres/SC_{huc_number}.kml'
+  kmz_file_path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/highres/SC_{huc_number}.kml'
 
 
 
 rgb:
   choose: 1
-  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/Google_Lines_Paper_Evaluation/downloaded_raw_{huc_number}/rgb/'
+  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/NAIP_Compare/gee/rgb/'
   spec:
+    scale: 1.0
     dimension: '2048x2048'
     format: "GEO_TIFF"
     prefix: ['tile_10_',
@@ -32,9 +33,22 @@ rgb:
                   ['2018', '2020'],
                   ['2020', '2022']]
 
+# rgb:
+#   choose: 1
+#   path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/highres/downloaded_raw_{huc_number}/rgb/'
+#   spec:
+#     dimension: '2000x2000'
+#     format: "GEO_TIFF"
+#     prefix: [
+#              'tile_14s_']
+#     filter_dates: [
+#                   ['2014', '2016']]
+
+
+
 dem:
-  choose: 1
-  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/Google_Lines_Paper_Evaluation/downloaded_raw_{huc_number}/dem'
+  choose: 0
+  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/NAIP_Compare/gee/dem'
   spec:
     dimension: '2000x2000'
     format: "GEO_TIFF"
@@ -44,7 +58,7 @@ dem:
 
 
 merge:
-  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/Google_Lines_Paper_Evaluation/downloaded_raw_{huc_number}/merged'
+  path: '/home/macula/SMATousi/Gullies/ground_truth/organized_data/NAIP_Compare/gee/merged'
   
 
 

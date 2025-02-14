@@ -58,6 +58,19 @@ region = ee.Geometry.Polygon(
 # region = ee.Geometry.Polygon(
 #     [
 #         [
+#             config['region']['point_1'],
+#             config['region']['point_2'],
+#             config['region']['point_3'],
+#             config['region']['point_4'],
+#         ]
+#     ],
+#     None,
+#     False,
+# )
+
+# region = ee.Geometry.Polygon(
+#     [
+#         [
 #             bounding_box_coordinates[0],
 #             bounding_box_coordinates[1],
 #             bounding_box_coordinates[2],
@@ -86,6 +99,7 @@ if config['rgb']['choose']:
 
         image = (
             ee.ImageCollection('USDA/NAIP/DOQQ')
+            # ee.ImageCollection('SKYSAT/GEN-A/PUBLIC/ORTHO/RGB')
             .filterBounds(region)
             .filterDate(pair[0], pair[1])
             .mosaic()
@@ -124,8 +138,9 @@ if config['rgb']['choose']:
             url = image.getDownloadURL(
                 {
                     'region': region,
-                    'dimensions': params['dimensions'],
+                    # 'dimensions': params['dimensions'],
                     'format': params['format'],
+                    'scale': config['rgb']['spec']['scale']
                 }
             )
             
