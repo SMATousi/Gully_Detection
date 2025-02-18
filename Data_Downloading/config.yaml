@@ -62,4 +62,6 @@ merge:
   path: '/home1/pupil/SMATousi/High_Res_Data/NAIP_from_GEE/Monroe/merged'
   
 
+MSDIS:
+  path_to_merge: '/home1/pupil/SMATousi/High_Res_Data/2023/Monroe/MonroeCountyHUC'
 
