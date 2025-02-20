@@ -1,9 +1,9 @@
 region:
   tif_file_path: '/home1/pupil/SMATousi/High_Res_Data/2023/Monroe/MonroeCountyHUC/5625_43583.tif'
-  point_1: [40.465274,-94.680294] 
-  point_2: [40.465837,-94.636896]
-  point_3: [40.443150,-94.644243]
-  point_4: [40.439484,-94.687236]
+  point_1: [-92.2298350,39.4211876] 
+  point_2: [-92.2278203,39.4190313]
+  point_3: [-92.2301507,39.4177661]
+  point_4: [-92.2325582,39.4194416]
 
 
 huc_number: &huc_number '15'
@@ -16,7 +16,7 @@ kmz_address:
 
 rgb:
   choose: 1
-  path: '/home1/pupil/SMATousi/High_Res_Data/NAIP_from_GEE/Monroe/rgb/'
+  path: '/home1/pupil/SMATousi/High_Res_Data/NAIP_from_GEE/Monroe/2022/rgb'
   spec:
     scale: 1.0
     dimension: '2048x2048'
@@ -26,13 +26,13 @@ rgb:
              'tile_14_',
              'tile_16_',
              'tile_18_',
-             'tile_20_']
+             'tile_22_']
     filter_dates: [['2010', '2012'],
                   ['2012', '2014'],
                   ['2014', '2016'],
                   ['2016', '2018'],
                   ['2018', '2019'],
-                  ['2020', '2022']]
+                  ['2022', '2024']]
 
 # rgb:
 #   choose: 1
@@ -59,7 +59,7 @@ dem:
 
 
 merge:
-  path: '/home1/pupil/SMATousi/High_Res_Data/NAIP_from_GEE/Monroe/merged'
+  path: '/home1/pupil/SMATousi/High_Res_Data/NAIP_from_GEE/Monroe/2022/merged'
   
 
 MSDIS:

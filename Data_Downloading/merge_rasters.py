@@ -70,7 +70,7 @@ def merge_tiffs_by_prefix(prefix, input_dir, output_dir='merged_tiffs'):
 # input_directory = "/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/gully_detection/raw_data/HUC_071100060307/RGB"
 # dem_input_dir = "/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/gully_detection/raw_data/HUC_071100060307/DEM"
 # output_dir = "/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/gully_detection/raw_data/HUC_071100060307/merged"
-prefixes = ["tile_10_", "tile_12_", "tile_14_", "tile_16_", "tile_18_", "tile_20_"]
+prefixes = ["tile_10_", "tile_12_", "tile_14_", "tile_16_", "tile_18_", "tile_22_"]
 dem_prefix = ["dem_tile_"]
 for prefix in prefixes:
     merge_tiffs_by_prefix(prefix, rgb_path, output_path)
