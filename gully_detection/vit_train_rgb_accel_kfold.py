@@ -168,7 +168,7 @@ def main():
 
             for batch in tqdm(training_dataloader):
                 images, dem_images, gt_masks, labels = batch
-                print(images[0].shape)
+                # print(images[0].shape)
 
                 output = model(images)
                 loss = criterion(output.squeeze(), labels)
