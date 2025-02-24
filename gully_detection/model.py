@@ -82,7 +82,7 @@ class ViT_Gully_Classifier(nn.Module):
         
     def forward(self, list_of_images):
 
-        preprocessed_images = [self.preprocessor(images=image, return_tensors="pt") for image in list_of_images]
+        preprocessed_images = [self.preprocessor(images=image, return_tensors="pt")['pixel_values'] for image in list_of_images]
         embedding_outputs = [self.embedding(preprocessed_image) for preprocessed_image in preprocessed_images]
         encoder_outputs = [self.encoder(embedding_output) for embedding_output in embedding_outputs]
         layer_norm_outputs = [self.layernorm(encoder_output[0]) for encoder_output in encoder_outputs]
