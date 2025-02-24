@@ -7,6 +7,7 @@ from torchvision import transforms
 from PIL import Image
 import random
 import imageio
+import rasterio
 
 class SixImageDataset(Dataset):
     def __init__(self, pos_dir, neg_dir, transform=None):
