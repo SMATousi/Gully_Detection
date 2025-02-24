@@ -92,7 +92,7 @@ def main():
     # Load dataset and initialize model, criterion, optimizer
     transform = transforms.Compose([
         # transforms.Resize((128, 128)),
-        # transforms.ToTensor()
+        transforms.ToTensor()
     ])
 
     pos_dir = '/root/home/data/Pos_Neg_224/pos/rgb_images/'
@@ -168,6 +168,7 @@ def main():
 
             for batch in tqdm(training_dataloader):
                 images, dem_images, gt_masks, labels = batch
+                print(images[0].shape)
 
                 output = model(images)
                 loss = criterion(output.squeeze(), labels)
