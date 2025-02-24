@@ -92,7 +92,7 @@ def main():
     # Load dataset and initialize model, criterion, optimizer
     transform = transforms.Compose([
         # transforms.Resize((128, 128)),
-        transforms.ToTensor()
+        # transforms.ToTensor()
     ])
 
     pos_dir = '/root/home/data/Pos_Neg_224/pos/rgb_images/'
