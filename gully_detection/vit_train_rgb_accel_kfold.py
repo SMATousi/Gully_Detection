@@ -132,8 +132,8 @@ def main():
         train_subset = torch.utils.data.Subset(full_dataset, train_idx)
         val_subset = torch.utils.data.Subset(full_dataset, val_idx)
 
-        train_loader = DataLoader(train_subset, batch_size=args.batchsize, shuffle=True)
-        val_loader = DataLoader(val_subset, batch_size=args.batchsize, shuffle=False)
+        train_loader = DataLoader(train_subset, batch_size=args.batchsize, shuffle=True, num_workers=16)
+        val_loader = DataLoader(val_subset, batch_size=args.batchsize, shuffle=False, num_workers=16)
 
         # Initialize resnet_extractor and mlp_classifier
         # resnet_extractor = ResNetFeatureExtractor()
