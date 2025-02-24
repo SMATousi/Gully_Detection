@@ -78,7 +78,8 @@ class ViT_Gully_Classifier(nn.Module):
 
         self.encoder = self.classifier.vit.encoder
         self.layernorm = self.classifier.vit.layernorm
-        self.final_layer = nn.Linear(in_features=6*768, out_features=2, bias=True)
+        self.final_layer = nn.Linear(in_features=6*768, out_features=1, bias=True)
+        self.sigmoid = nn.Sigmoid()
         
     def forward(self, list_of_images):
 
@@ -87,8 +88,8 @@ class ViT_Gully_Classifier(nn.Module):
         encoder_outputs = [self.encoder(embedding_output) for embedding_output in embedding_outputs]
         layer_norm_outputs = [self.layernorm(encoder_output[0]) for encoder_output in encoder_outputs]
         pooled_outputs = [layer_norm_output[:, 0] for layer_norm_output in layer_norm_outputs]
-        stacked_features = torch.stack(pooled_outputs, dim=1)
+        stacked_features = torch.concatenate(pooled_outputs, dim=1)
         output = self.final_layer(stacked_features)
-
+        output = self.sigmoid(output)
 
         return output
