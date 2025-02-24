@@ -95,12 +95,12 @@ def main():
         transforms.ToTensor()
     ])
 
-    pos_dir = '/root/home/data/All_Pos_Neg/all_pos/rgb_images/'
-    neg_dir = '/root/home/data/All_Pos_Neg/all_neg/rgb_images/'
-    pos_dem_dir = '/root/home/data/All_Pos_Neg/all_pos/dem/'
-    neg_dem_dir = '/root/home/data/All_Pos_Neg/all_neg/dem/'
-    pos_gt_mask_dir = '/root/home/data/All_Pos_Neg/all_pos/ground_truth/'
-    neg_gt_mask_dir = '/root/home/data/All_Pos_Neg/all_neg/ground_truth/'
+    pos_dir = '/root/home/data/Pos_Neg_224/all_pos/rgb_images/'
+    neg_dir = '/root/home/data/Pos_Neg_224/all_neg/rgb_images/'
+    pos_dem_dir = '/root/home/data/Pos_Neg_224/all_pos/dem/'
+    neg_dem_dir = '/root/home/data/Pos_Neg_224/all_neg/dem/'
+    pos_gt_mask_dir = '/root/home/data/Pos_Neg_224/all_pos/ground_truth/'
+    neg_gt_mask_dir = '/root/home/data/Pos_Neg_224/all_neg/ground_truth/'
 
     full_dataset = SixImageDataset_DEM_GT(
         pos_dir, neg_dir, pos_dem_dir, neg_dem_dir, pos_gt_mask_dir, neg_gt_mask_dir,
