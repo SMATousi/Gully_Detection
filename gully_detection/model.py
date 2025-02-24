@@ -71,7 +71,7 @@ class ViT_Gully_Classifier(nn.Module):
         self.classifier = ViTForImageClassification.from_pretrained("google/vit-base-patch16-224-in21k")
         self.preprocessor.do_resize = False
         self.preprocessor.do_rescale = False
-        
+
         self.embedding = self.classifier.vit.embeddings
         if tandom_init_embeddings:
             torch.nn.init.normal_(self.embedding.patch_embeddings.projection.weight, mean=0.0, std=0.02)
@@ -82,7 +82,7 @@ class ViT_Gully_Classifier(nn.Module):
         
     def forward(self, images):
 
-        preprocessed_images = [self.preprocessor(image) for image in images]
+        preprocessed_images = [self.preprocessor(images=image, return_tensors="pt") for image in images]
         embedding_outputs = [self.embedding(preprocessed_image) for preprocessed_image in preprocessed_images]
         encoder_outputs = [self.encoder(embedding_output) for embedding_output in embedding_outputs]
         layer_norm_outputs = [self.layernorm(encoder_output[0]) for encoder_output in encoder_outputs]
