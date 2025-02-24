@@ -12,7 +12,7 @@ import os
 import glob
 import random
 import numpy as np
-
+from transformers import ViTForImageClassification, ViTFeatureExtractor
 import torch
 import torch.nn as nn
 from torchvision import models
@@ -62,3 +62,31 @@ class Gully_Classifier(nn.Module):
 
         return output
 
+
+
+class ViT_Gully_Classifier(nn.Module):
+    def __init__(self, tandom_init_embeddings=False):
+        super(ViT_Gully_Classifier, self).__init__()
+        self.preprocessor = ViTFeatureExtractor.from_pretrained("google/vit-base-patch16-224-in21k")
+        self.classifier = ViTForImageClassification.from_pretrained("google/vit-base-patch16-224-in21k")
+
+        self.embedding = self.classifier.vit.embeddings
+        if tandom_init_embeddings:
+            torch.nn.init.normal_(self.embedding.patch_embeddings.projection.weight, mean=0.0, std=0.02)
+
+        self.encoder = self.classifier.vit.encoder
+        self.layernorm = self.classifier.vit.layernorm
+        self.final_layer = nn.Linear(in_features=6*768, out_features=2, bias=True)
+        
+    def forward(self, images):
+
+        preprocessed_images = [self.preprocessor(image) for image in images]
+        embedding_outputs = [self.embedding(preprocessed_image) for preprocessed_image in preprocessed_images]
+        encoder_outputs = [self.encoder(embedding_output) for embedding_output in embedding_outputs]
+        layer_norm_outputs = [self.layernorm(encoder_output[0]) for encoder_output in encoder_outputs]
+        pooled_outputs = [layer_norm_output[:, 0] for layer_norm_output in layer_norm_outputs]
+        stacked_features = torch.stack(pooled_outputs, dim=1)
+        output = self.final_layer(stacked_features)
+
+
+        return output
