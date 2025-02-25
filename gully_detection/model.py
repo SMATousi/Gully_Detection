@@ -75,7 +75,7 @@ class ViT_Gully_Classifier(nn.Module):
         self.embedding = self.classifier.vit.embeddings
         if tandom_init_embeddings:
             print("------ The embeddings are initialized randomly ----------------")
-            torch.nn.init.normal_(self.embedding.patch_embeddings.projection.weight, mean=0.0, std=0.02)
+            torch.nn.init.normal_(self.embedding.patch_embeddings.projection.weight, mean=0.0, std=0.5)
 
         self.encoder = self.classifier.vit.encoder
         self.layernorm = self.classifier.vit.layernorm
