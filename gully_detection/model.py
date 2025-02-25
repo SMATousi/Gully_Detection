@@ -65,7 +65,7 @@ class Gully_Classifier(nn.Module):
 
 
 class ViT_Gully_Classifier(nn.Module):
-    def __init__(self, tandom_init_embeddings=False):
+    def __init__(self, tandom_init_embeddings=False, freeze_layers=False):
         super(ViT_Gully_Classifier, self).__init__()
         self.preprocessor = ViTFeatureExtractor.from_pretrained("google/vit-base-patch16-224-in21k")
         self.classifier = ViTForImageClassification.from_pretrained("google/vit-base-patch16-224-in21k")
@@ -81,6 +81,20 @@ class ViT_Gully_Classifier(nn.Module):
         self.layernorm = self.classifier.vit.layernorm
         self.final_layer = nn.Linear(in_features=6*768, out_features=1, bias=True)
         self.sigmoid = nn.Sigmoid()
+
+        if freeze_layers:
+            self.freeze_layers()
+
+    def freeze_layers(self):
+        for param in self.encoder.parameters():
+            param.requires_grad = False
+        for param in self.layernorm.parameters():
+            param.requires_grad = False
+        
+        # for param in self.final_layer.parameters():
+        #     param.requires_grad = False
+        # for param in self.sigmoid.parameters():
+        #     param.requires_grad = False
         
     def forward(self, list_of_images):
 

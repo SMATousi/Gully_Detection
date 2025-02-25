@@ -53,6 +53,7 @@ def main():
     parser.add_argument("--nottest", help="Enable verbose mode", action="store_true")
     parser.add_argument("--logging", help="Enable verbose mode", action="store_true")
     parser.add_argument("--init_embed", help="Enable verbose mode", action="store_true")
+    parser.add_argument("--freeze_weight", help="Enable verbose mode", action="store_true")
     
     args = parser.parse_args()
     
@@ -78,6 +79,11 @@ def main():
         init_embed = True 
     else:
         init_embed = False
+
+    if args.freeze_weight:
+        freeze_weight = True 
+    else:
+        freeze_weight = False
     
     
     # args = parser.parse_args()
@@ -143,7 +149,7 @@ def main():
         # Wrap mlp_classifier with accelerator
         # mlp_classifier = accelerator.prepare(mlp_classifier)
 
-        model = ViT_Gully_Classifier(tandom_init_embeddings=init_embed)
+        model = ViT_Gully_Classifier(tandom_init_embeddings=init_embed, freeze_layers=freeze_weight)
 
         criterion = nn.BCEWithLogitsLoss()
         optimizer = optim.Adam(model.parameters(), lr=0.0001)
