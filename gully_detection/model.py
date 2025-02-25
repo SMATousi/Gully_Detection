@@ -96,8 +96,11 @@ class ViT_Gully_Classifier(nn.Module):
         # for param in self.sigmoid.parameters():
         #     param.requires_grad = False
         
-    def forward(self, list_of_images):
+    def forward(self, list_of_images, freeze_the_params=False):
 
+        if freeze_the_params:
+            self.freeze_layers()
+            
         # preprocessed_images = [self.preprocessor(images=image, return_tensors="pt")['pixel_values'] for image in list_of_images]
         embedding_outputs = [self.embedding(image) for image in list_of_images]
         encoder_outputs = [self.encoder(embedding_output) for embedding_output in embedding_outputs]

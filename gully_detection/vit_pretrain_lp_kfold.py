@@ -113,7 +113,6 @@ def main():
         transform=transform
     )
 
-    kfold_pretraining = KFold(n_splits=4, shuffle=True, random_state=10)
 
     kfold = KFold(n_splits=10, shuffle=True, random_state=0)
     
@@ -138,11 +137,26 @@ def main():
                         # }
                 )
 
-        train_subset = torch.utils.data.Subset(full_dataset, train_idx)
+        # train_subset = torch.utils.data.Subset(full_dataset, train_idx)
         val_subset = torch.utils.data.Subset(full_dataset, val_idx)
 
-        train_loader = DataLoader(train_subset, batch_size=args.batchsize, shuffle=True, num_workers=8)
+        np.random.shuffle(train_idx)
+
+        split_point = int(0.75 * len(train_idx))
+        train_subset_pretraining_idx = train_idx[:split_point]  # 75% for task 1
+        train_subset_lp_idx = train_idx[split_point:]  # 25% for task 2
+
+        train_subset_pretraining = torch.utils.data.Subset(full_dataset, train_subset_pretraining_idx)
+        train_subset_lp = torch.utils.data.Subset(full_dataset, train_subset_lp_idx)
+
+        train_loader_pretraining = DataLoader(train_subset_pretraining, batch_size=args.batchsize, shuffle=True, num_workers=8)
+        train_loader_lp = DataLoader(train_subset_lp, batch_size=args.batchsize, shuffle=True, num_workers=8)
+
+        # Assuming val_loader remains unchanged
         val_loader = DataLoader(val_subset, batch_size=args.batchsize, shuffle=False, num_workers=8)
+
+        # train_loader = DataLoader(train_subset, batch_size=args.batchsize, shuffle=True, num_workers=8)
+        # val_loader = DataLoader(val_subset, batch_size=args.batchsize, shuffle=False, num_workers=8)
 
         # Initialize resnet_extractor and mlp_classifier
         # resnet_extractor = ResNetFeatureExtractor()
@@ -152,15 +166,16 @@ def main():
         # Wrap mlp_classifier with accelerator
         # mlp_classifier = accelerator.prepare(mlp_classifier)
 
-        model = ViT_Gully_Classifier(tandom_init_embeddings=init_embed, freeze_layers=freeze_weight)
+        model = ViT_Gully_Classifier(tandom_init_embeddings=init_embed)
 
         criterion = nn.BCEWithLogitsLoss()
         optimizer = optim.Adam(model.parameters(), lr=0.0001)
         scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
 
-        model, optimizer, training_dataloader, scheduler = accelerator.prepare(
-        model, optimizer, train_loader, scheduler
+        model, optimizer, training_dataloader_pretraining, scheduler = accelerator.prepare(
+        model, optimizer, train_loader_pretraining, scheduler
         )
+        training_dataloader_lp = accelerator.prepare(train_loader_lp)
         validation_dataloader = accelerator.prepare(val_loader)
 
         train_metrics = {'loss': [], 'precision': [], 'recall': [], 'f1': []}
@@ -175,7 +190,7 @@ def main():
             all_labels = []
             all_preds = []
 
-            for batch in tqdm(training_dataloader):
+            for batch in tqdm(training_dataloader_pretraining):
                 images, dem_images, gt_masks, labels = batch
                 # print(images[0].shape)
 
