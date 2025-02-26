@@ -65,7 +65,7 @@ class Gully_Classifier(nn.Module):
 
 
 class ViT_Gully_Classifier(nn.Module):
-    def __init__(self, tandom_init_embeddings=False, freeze_layers=False):
+    def __init__(self, tandom_init_embeddings=False):
         super(ViT_Gully_Classifier, self).__init__()
         self.preprocessor = ViTFeatureExtractor.from_pretrained("google/vit-base-patch16-224-in21k")
         self.classifier = ViTForImageClassification.from_pretrained("google/vit-base-patch16-224-in21k")
@@ -73,6 +73,7 @@ class ViT_Gully_Classifier(nn.Module):
         self.preprocessor.do_rescale = False
 
         self.embedding = self.classifier.vit.embeddings
+
         if tandom_init_embeddings:
             print("------ The embeddings are initialized randomly ----------------")
             torch.nn.init.normal_(self.embedding.patch_embeddings.projection.weight, mean=0.0, std=0.5)
@@ -82,24 +83,21 @@ class ViT_Gully_Classifier(nn.Module):
         self.final_layer = nn.Linear(in_features=6*768, out_features=1, bias=True)
         self.sigmoid = nn.Sigmoid()
 
-        if freeze_layers:
-            self.freeze_layers()
+        # if freeze_layers:
+        #     self.freeze_layers()
 
-    def freeze_layers(self):
-        for param in self.encoder.parameters():
-            param.requires_grad = False
-        for param in self.layernorm.parameters():
-            param.requires_grad = False
+    # def freeze_layers(self):
+    #     for param in self.encoder.parameters():
+    #         param.requires_grad = False
+    #     for param in self.layernorm.parameters():
+    #         param.requires_grad = False
         
         # for param in self.final_layer.parameters():
         #     param.requires_grad = False
         # for param in self.sigmoid.parameters():
         #     param.requires_grad = False
         
-    def forward(self, list_of_images, freeze_the_params=False):
-
-        if freeze_the_params:
-            self.freeze_layers()
+    def forward(self, list_of_images):
             
         # preprocessed_images = [self.preprocessor(images=image, return_tensors="pt")['pixel_values'] for image in list_of_images]
         embedding_outputs = [self.embedding(image) for image in list_of_images]

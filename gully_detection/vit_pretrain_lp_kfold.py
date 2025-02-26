@@ -141,7 +141,7 @@ def main():
         # train_subset = torch.utils.data.Subset(full_dataset, train_idx)
         val_subset = torch.utils.data.Subset(full_dataset, val_idx)
 
-        np.random.shuffle(train_idx)
+        # np.random.shuffle(train_idx)
 
         split_point = int(0.75 * len(train_idx))
         train_subset_pretraining_idx = train_idx[:split_point]  # 75% for task 1
@@ -305,17 +305,25 @@ def main():
 ################################################################################################
 ################################################################################################
 
+        raw_model = accelerator.unwrap_model(model)
+        torch.nn.init.normal_(raw_model.embedding.patch_embeddings.projection.weight, mean=0.0, std=0.5)
+        for param in raw_model.parameters():
+            if param in optimizer.state:
+                optimizer.state[param] = {}
+
+        for param in raw_model.encoder.parameters():
+            param.requires_grad = False
+        for param in raw_model.layernorm.parameters():
+            param.requires_grad = False
+        print("-------------- The embedding layer has been re-initialized --------------------")
+
         for epoch in range(args.lp_epochs):
             # Training
             # resnet_extractor.eval()  # Feature extractor should be in eval mode
-            raw_model = accelerator.unwrap_model(model)
-            torch.nn.init.normal_(raw_model.embedding.patch_embeddings.projection.weight, mean=0.0, std=0.5)
-            for param in raw_model.parameters():
-                if param in optimizer.state:
-                    optimizer.state[param] = {}
+            
 
             
-            print("-------------- The embedding layer has been re-initialized --------------------")
+            
             model.train()
             
             total_loss = 0
