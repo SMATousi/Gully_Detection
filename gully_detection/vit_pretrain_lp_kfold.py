@@ -44,7 +44,8 @@ def main():
     parser.add_argument("--modelname", type=str, required=False)
     parser.add_argument("--batchsize", type=int, default=4)
     parser.add_argument("--savingstep", type=int, default=100)
-    parser.add_argument("--epochs", type=int, default=100)
+    parser.add_argument("--pret_epochs", type=int, default=70)
+    parser.add_argument("--lp_epochs", type=int, default=30)
     parser.add_argument("--imagesize", type=int, default=256)
     parser.add_argument("--alpha", type=float, default=1)
     parser.add_argument("--beta", type=float, default=1)
@@ -58,7 +59,7 @@ def main():
     args = parser.parse_args()
     
     arg_batch_size = args.batchsize
-    arg_epochs = args.epochs
+    # arg_epochs = args.epochs
     arg_runname = args.runname
     arg_projectname = args.projectname
     arg_modelname = args.modelname
@@ -175,13 +176,20 @@ def main():
         model, optimizer, training_dataloader_pretraining, scheduler = accelerator.prepare(
         model, optimizer, train_loader_pretraining, scheduler
         )
+
         training_dataloader_lp = accelerator.prepare(train_loader_lp)
         validation_dataloader = accelerator.prepare(val_loader)
 
         train_metrics = {'loss': [], 'precision': [], 'recall': [], 'f1': []}
         val_metrics = {'loss': [], 'precision': [], 'recall': [], 'f1': []}
 
-        for epoch in range(args.epochs):
+################################################################################################
+################################################################################################
+####################### Pretraining Starts Here ################################################
+################################################################################################
+################################################################################################
+
+        for epoch in range(args.pret_epochs):
             # Training
             # resnet_extractor.eval()  # Feature extractor should be in eval mode
             model.train()
@@ -195,6 +203,122 @@ def main():
                 # print(images[0].shape)
 
                 output = model(images)
+                loss = criterion(output.squeeze(), labels)
+
+                total_loss += loss.item()
+
+                all_predictions = accelerator.gather(output)
+                all_targets = accelerator.gather(labels)
+
+                optimizer.zero_grad()
+                accelerator.backward(loss)
+                optimizer.step()
+
+                preds = torch.round(all_predictions.squeeze()).detach().cpu().numpy()
+                all_labels.extend(all_targets.cpu().numpy())
+                all_preds.extend(preds)
+
+                if arg_nottest:
+                    continue
+                else:
+                    break
+
+            train_loss = total_loss / len(train_loader)
+            train_precision = precision_score(all_labels, all_preds)
+            train_recall = recall_score(all_labels, all_preds)
+            train_f1 = f1_score(all_labels, all_preds)
+
+            if accelerator.is_main_process:
+
+                if args.logging:
+                    wandb.log({'Train/Loss':train_loss,
+                            'Train/Precision': train_precision,
+                            'Train/Recall': train_recall,
+                            'Train/F1': train_f1,
+                            'Train/Epoch': epoch})
+
+            train_metrics['loss'].append(train_loss)
+            train_metrics['precision'].append(train_precision)
+            train_metrics['recall'].append(train_recall)
+            train_metrics['f1'].append(train_f1)
+
+            # Validation Loop
+            # mlp_classifier.eval()
+            model.eval()
+
+            total_loss = 0
+            all_labels = []
+            all_preds = []
+
+            with torch.no_grad():
+                for batch in tqdm(validation_dataloader):
+                    images, dem_images, gt_masks, labels = batch
+
+                    # Extract features using resnet_extractor
+                    output = model(images)
+
+                    # Forward pass through mlp_classifier
+                    loss = criterion(output.squeeze(), labels)
+
+                    all_predictions = accelerator.gather(output)
+                    all_targets = accelerator.gather(labels)
+        
+                    total_loss += loss.item()
+
+                    preds = torch.round(all_predictions.squeeze()).detach().cpu().numpy()
+                    all_labels.extend(all_targets.cpu().numpy())
+                    all_preds.extend(preds)
+
+                    if arg_nottest:
+                            continue
+                    else:
+                        break
+
+            val_loss = total_loss / len(val_loader)
+            val_precision = precision_score(all_labels, all_preds)
+            val_recall = recall_score(all_labels, all_preds)
+            val_f1 = f1_score(all_labels, all_preds)
+
+            if accelerator.is_main_process:
+
+                if args.logging:
+
+                    wandb.log({'Validation/Loss':val_loss,
+                           'Validation/Precision': val_precision,
+                           'Validation/Recall': val_recall,
+                           'Validation/F1': val_f1,
+                           'Validation/Epoch': epoch})
+
+            val_metrics['loss'].append(val_loss)
+            val_metrics['precision'].append(val_precision)
+            val_metrics['recall'].append(val_recall)
+            val_metrics['f1'].append(val_f1)
+
+            print(f"Epoch {epoch + 1}/{args.epochs} - Train Loss: {train_loss}, Train Precision: {train_precision}, Train Recall: {train_recall}, Train F1: {train_f1}")
+            print(f"Epoch {epoch + 1}/{args.epochs} - Val Loss: {val_loss}, Val Precision: {val_precision}, Val Recall: {val_recall}, Val F1: {val_f1}")
+
+
+
+################################################################################################
+################################################################################################
+####################### Pretraining Ends Here ##################################################
+################################################################################################
+################################################################################################
+
+        for epoch in range(args.lp_epochs):
+            # Training
+            # resnet_extractor.eval()  # Feature extractor should be in eval mode
+            model.train()
+            
+            total_loss = 0
+            all_labels = []
+            all_preds = []
+
+            for batch in tqdm(training_dataloader_lp):
+                images, dem_images, gt_masks, labels = batch
+                # print(images[0].shape)
+
+                output = model(images,freeze_the_params=freeze_weight)
                 loss = criterion(output.squeeze(), labels)
 
                 total_loss += loss.item()
