@@ -294,8 +294,8 @@ def main():
             val_metrics['recall'].append(val_recall)
             val_metrics['f1'].append(val_f1)
 
-            print(f"Epoch {epoch + 1}/{args.epochs} - Train Loss: {train_loss}, Train Precision: {train_precision}, Train Recall: {train_recall}, Train F1: {train_f1}")
-            print(f"Epoch {epoch + 1}/{args.epochs} - Val Loss: {val_loss}, Val Precision: {val_precision}, Val Recall: {val_recall}, Val F1: {val_f1}")
+            print(f"Epoch {epoch + 1}/{args.pret_epochs} - Train Loss: {train_loss}, Train Precision: {train_precision}, Train Recall: {train_recall}, Train F1: {train_f1}")
+            print(f"Epoch {epoch + 1}/{args.pret_epochs} - Val Loss: {val_loss}, Val Precision: {val_precision}, Val Recall: {val_recall}, Val F1: {val_f1}")
 
 
 
@@ -410,8 +410,8 @@ def main():
             val_metrics['recall'].append(val_recall)
             val_metrics['f1'].append(val_f1)
 
-            print(f"Epoch {epoch + 1}/{args.epochs} - Train Loss: {train_loss}, Train Precision: {train_precision}, Train Recall: {train_recall}, Train F1: {train_f1}")
-            print(f"Epoch {epoch + 1}/{args.epochs} - Val Loss: {val_loss}, Val Precision: {val_precision}, Val Recall: {val_recall}, Val F1: {val_f1}")
+            print(f"Epoch {epoch + 1}/{args.lp_epochs} - Train Loss: {train_loss}, Train Precision: {train_precision}, Train Recall: {train_recall}, Train F1: {train_f1}")
+            print(f"Epoch {epoch + 1}/{args.lp_epochs} - Val Loss: {val_loss}, Val Precision: {val_precision}, Val Recall: {val_recall}, Val F1: {val_f1}")
 
         fold_metrics.append((train_metrics, val_metrics))
 
