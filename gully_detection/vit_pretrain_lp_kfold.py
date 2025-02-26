@@ -334,7 +334,7 @@ def main():
                 images, dem_images, gt_masks, labels = batch
                 # print(images[0].shape)
 
-                output = model(images,freeze_the_params=freeze_weight)
+                output = model(images)
                 loss = criterion(output.squeeze(), labels)
 
                 total_loss += loss.item()
