@@ -308,7 +308,9 @@ def main():
         for epoch in range(args.lp_epochs):
             # Training
             # resnet_extractor.eval()  # Feature extractor should be in eval mode
-            torch.nn.init.normal_(model.embedding.patch_embeddings.projection.weight, mean=0.0, std=0.5)
+            raw_model = accelerator.unwrap_model(model)
+            torch.nn.init.normal_(raw_model.embedding.patch_embeddings.projection.weight, mean=0.0, std=0.5)
+            print("-------------- The embedding layer has been re-initialized --------------------")
             model.train()
             
             total_loss = 0
