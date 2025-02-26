@@ -223,7 +223,7 @@ def main():
                 else:
                     break
 
-            train_loss = total_loss / len(train_loader)
+            train_loss = total_loss / len(training_dataloader_pretraining)
             train_precision = precision_score(all_labels, all_preds)
             train_recall = recall_score(all_labels, all_preds)
             train_f1 = f1_score(all_labels, all_preds)
@@ -339,7 +339,7 @@ def main():
                 else:
                     break
 
-            train_loss = total_loss / len(train_loader)
+            train_loss = total_loss / len(training_dataloader_lp)
             train_precision = precision_score(all_labels, all_preds)
             train_recall = recall_score(all_labels, all_preds)
             train_f1 = f1_score(all_labels, all_preds)
