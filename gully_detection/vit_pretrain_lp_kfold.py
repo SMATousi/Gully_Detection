@@ -310,6 +310,11 @@ def main():
             # resnet_extractor.eval()  # Feature extractor should be in eval mode
             raw_model = accelerator.unwrap_model(model)
             torch.nn.init.normal_(raw_model.embedding.patch_embeddings.projection.weight, mean=0.0, std=0.5)
+            for param in raw_model.parameters():
+                if param in optimizer.state:
+                    optimizer.state[param] = {}
+
+            
             print("-------------- The embedding layer has been re-initialized --------------------")
             model.train()
             
