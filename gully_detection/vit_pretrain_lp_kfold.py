@@ -307,9 +307,9 @@ def main():
 
         raw_model = accelerator.unwrap_model(model)
         torch.nn.init.normal_(raw_model.embedding.patch_embeddings.projection.weight, mean=0.0, std=0.5)
-        for param in raw_model.parameters():
-            if param in optimizer.state:
-                optimizer.state[param] = {}
+        #for param in raw_model.parameters():
+         #   if param in optimizer.state:
+          #      optimizer.state[param] = {}
 
         for param in raw_model.encoder.parameters():
             param.requires_grad = False
