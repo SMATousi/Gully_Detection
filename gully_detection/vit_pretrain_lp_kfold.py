@@ -170,7 +170,7 @@ def main():
 
         model = ViT_Gully_Classifier(tandom_init_embeddings=init_embed)
 
-        criterion = nn.BCEWithLogitsLoss()
+        criterion = nn.BCELoss()
         optimizer = optim.Adam(model.parameters(), lr=0.0001)
         scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
 
