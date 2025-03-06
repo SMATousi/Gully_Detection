@@ -50,6 +50,7 @@ def main():
     parser.add_argument("--imagesize", type=int, default=256)
     parser.add_argument("--alpha", type=float, default=1)
     parser.add_argument("--beta", type=float, default=1)
+    parser.add_argument("--split_ratio", type=float, default=0.75)
     parser.add_argument("--threshold", type=float, default=1)
     parser.add_argument("--dropoutrate", type=float, default=0.5)
     parser.add_argument("--nottest", help="Enable verbose mode", action="store_true")
@@ -142,9 +143,9 @@ def main():
         # train_subset = torch.utils.data.Subset(full_dataset, train_idx)
         val_subset = torch.utils.data.Subset(full_dataset, val_idx)
 
-        # np.random.shuffle(train_idx)
+        np.random.shuffle(train_idx)
 
-        split_point = int(0.75 * len(train_idx))
+        split_point = int(args.split_ratio * len(train_idx))
         train_subset_pretraining_idx = train_idx[:split_point]  # 75% for task 1
         train_subset_lp_idx = train_idx[split_point:]  # 25% for task 2
 
