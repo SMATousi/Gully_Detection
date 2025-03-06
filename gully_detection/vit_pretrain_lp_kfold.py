@@ -307,14 +307,22 @@ def main():
 
         raw_model = accelerator.unwrap_model(model)
         torch.nn.init.normal_(raw_model.embedding.patch_embeddings.projection.weight, mean=0.0, std=0.5)
-        #for param in raw_model.parameters():
-         #   if param in optimizer.state:
-          #      optimizer.state[param] = {}
+        # for param in raw_model.parameters():
+        #    if param in optimizer.state:
+        #        optimizer.state[param] = {}
 
         for param in raw_model.encoder.parameters():
             param.requires_grad = False
         for param in raw_model.layernorm.parameters():
             param.requires_grad = False
+        
+        optimizer_2 = optim.Adam(raw_model.parameters(), lr=0.0001)
+        scheduler_2 = torch.optim.lr_scheduler.StepLR(optimizer_2, step_size=100, gamma=0.1)
+
+        optimizer_2, scheduler_2 = accelerator.prepare(
+        optimizer_2, scheduler_2
+        )
+
         print("-------------- The embedding layer has been re-initialized --------------------")
 
         for epoch in range(args.lp_epochs):
@@ -342,9 +350,9 @@ def main():
                 all_predictions = accelerator.gather(output)
                 all_targets = accelerator.gather(labels)
 
-                optimizer.zero_grad()
+                optimizer_2.zero_grad()
                 accelerator.backward(loss)
-                optimizer.step()
+                optimizer_2.step()
 
                 preds = torch.round(all_predictions.squeeze()).detach().cpu().numpy()
                 all_labels.extend(all_targets.cpu().numpy())
