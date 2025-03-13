@@ -24,4 +24,4 @@ gully_detection/*.onnx
 gully_detection/artifacts/*
 gully_detection/wandb/*
 weak-supervision/trained_models/
-labeling_tool/data/
+labeling_tool/data/*
