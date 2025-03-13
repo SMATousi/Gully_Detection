@@ -1,5 +1,8 @@
+specs:
+  from_tif: 1
+
 region:
-  tif_file_path: '/home1/pupil/SMATousi/High_Res_Data/2023/Monroe/MonroeCountyHUC/5625_43583.tif'
+  tif_file_path: '/home/Gullies/ground_truth/organized_data/MO_Downloaded_HUCs/HUC_071100080401-done/data/merged/tile_20__merged.tif'
   point_1: [-92.2298350,39.4211876] 
   point_2: [-92.2278203,39.4190313]
   point_3: [-92.2301507,39.4177661]
@@ -16,7 +19,7 @@ kmz_address:
 
 rgb:
   choose: 1
-  path: '/home1/pupil/SMATousi/High_Res_Data/NAIP_from_GEE/Monroe/2022/rgb'
+  path: '/home/Choroid/High_Res_Data/final_raw_data/HUC_071100080401/WGS_NAIP/rgb'
   spec:
     scale: 1.0
     dimension: '2048x2048'
@@ -26,12 +29,14 @@ rgb:
              'tile_14_',
              'tile_16_',
              'tile_18_',
+             'tile_20_',
              'tile_22_']
     filter_dates: [['2010', '2012'],
                   ['2012', '2014'],
                   ['2014', '2016'],
                   ['2016', '2018'],
-                  ['2018', '2019'],
+                  ['2018', '2020'],
+                  ['2020', '2022'],
                   ['2022', '2024']]
 
 # rgb:
@@ -48,18 +53,19 @@ rgb:
 
 
 dem:
-  choose: 0
-  path: '/home1/pupil/SMATousi/High_Res_Data/NAIP_from_GEE/Monroe/dem'
+  choose: 1
+  path: '/home/Choroid/High_Res_Data/final_raw_data/HUC_071100080401/WGS_NAIP/dem'
   spec:
     dimension: '2000x2000'
     format: "GEO_TIFF"
     prefix: 'dem_tile_'
     filter_date_1: '2022'
     filter_date_2: '2000'
+    scale: 1.0
 
 
 merge:
-  path: '/home1/pupil/SMATousi/High_Res_Data/NAIP_from_GEE/Monroe/2022/merged'
+  path: '/home/Choroid/High_Res_Data/final_raw_data/HUC_071100080401/WGS_NAIP/merged'
   
 
 MSDIS:
