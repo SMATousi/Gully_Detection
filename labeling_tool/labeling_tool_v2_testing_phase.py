@@ -162,7 +162,7 @@ class LabelingGUI:
 
         self.data[self.current_tile] = {"images": image_labels}
         self.save_json()
-        messagebox.showinfo("Saved", f"Tile {self.current_tile} saved.")
+        # messagebox.showinfo("Saved", f"Tile {self.current_tile} saved.")
         self.update_tile_listbox()
         self.update_progress_bar()
 
