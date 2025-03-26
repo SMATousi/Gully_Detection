@@ -1,0 +1,2202 @@
+{
+    "1": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 4,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 3
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            }
+        }
+    },
+    "102": {
+        "images": {
+            "0": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "1": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "11": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            },
+            "3": {
+                "Ali": 4,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "108": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "118": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "124": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 3
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 2,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            }
+        }
+    },
+    "15": {
+        "images": {
+            "0": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            },
+            "1": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "11": {
+                "Ali": 4,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 4,
+                "Dr.Lory": 3,
+                "Krystal": 4
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 4
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            }
+        }
+    },
+    "153": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "154": {
+        "images": {
+            "0": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "159": {
+        "images": {
+            "0": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "171": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "191": {
+        "images": {
+            "0": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "205": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 3
+            },
+            "11": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            }
+        }
+    },
+    "21": {
+        "images": {
+            "0": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 2,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 4,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "2": {
+                "Ali": 1,
+                "Dr.Lory": 2,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 2,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            }
+        }
+    },
+    "213": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "221": {
+        "images": {
+            "0": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "1": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 4,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "3": {
+                "Ali": 1,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            }
+        }
+    },
+    "233": {
+        "images": {
+            "0": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "1": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 4,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 4
+            },
+            "3": {
+                "Ali": 1,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            }
+        }
+    },
+    "238": {
+        "images": {
+            "0": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "240": {
+        "images": {
+            "0": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "241": {
+        "images": {
+            "0": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "250": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 2
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 2
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "254": {
+        "images": {
+            "0": {
+                "Ali": 1,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 2,
+                "Krystal": 3
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 2,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 1,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 4,
+                "Dr.Lory": 2,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            }
+        }
+    },
+    "283": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 1,
+                "Dr.Lory": 4,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 1,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 2,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            }
+        }
+    },
+    "289": {
+        "images": {
+            "0": {
+                "Ali": 2,
+                "Dr.Lory": 1,
+                "Krystal": 2
+            },
+            "1": {
+                "Ali": 2,
+                "Dr.Lory": 1,
+                "Krystal": 2
+            },
+            "11": {
+                "Ali": 2,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "2": {
+                "Ali": 2,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "3": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "311": {
+        "images": {
+            "0": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "316": {
+        "images": {
+            "0": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "322": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "325": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "329": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "353": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "355": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "366": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "367": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "37": {
+        "images": {
+            "0": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "1": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            },
+            "11": {
+                "Ali": 4,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "4": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            }
+        }
+    },
+    "374": {
+        "images": {
+            "0": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 4
+            },
+            "11": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            }
+        }
+    },
+    "390": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 4
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 3
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "403": {
+        "images": {
+            "0": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 2,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "418": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            }
+        }
+    },
+    "428": {
+        "images": {
+            "0": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "1": {
+                "Ali": 1,
+                "Dr.Lory": 2,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 4,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "2": {
+                "Ali": 1,
+                "Dr.Lory": 2,
+                "Krystal": 3
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            }
+        }
+    },
+    "438": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            }
+        }
+    },
+    "445": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 3
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "45": {
+        "images": {
+            "0": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "1": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "11": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 2,
+                "Krystal": 4
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            }
+        }
+    },
+    "451": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 1,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 2,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 2,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 1,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            }
+        }
+    },
+    "46": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "11": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 3
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 3
+            }
+        }
+    },
+    "461": {
+        "images": {
+            "0": {
+                "Ali": 2,
+                "Dr.Lory": 3,
+                "Krystal": 2
+            },
+            "1": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 2
+            },
+            "11": {
+                "Ali": 4,
+                "Dr.Lory": 1,
+                "Krystal": 4
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "3": {
+                "Ali": 4,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 3
+            },
+            "5": {
+                "Ali": 4,
+                "Dr.Lory": 3,
+                "Krystal": 4
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 3
+            }
+        }
+    },
+    "468": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 4,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 4,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 3
+            }
+        }
+    },
+    "489": {
+        "images": {
+            "0": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 4,
+                "Dr.Lory": 4,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 4,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            }
+        }
+    },
+    "492": {
+        "images": {
+            "0": {
+                "Ali": 2,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 4,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 3,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            }
+        }
+    },
+    "76": {
+        "images": {
+            "0": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "1": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "6": {
+                "Ali": 0,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            }
+        }
+    },
+    "90": {
+        "images": {
+            "0": {
+                "Ali": 1,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "1": {
+                "Ali": 1,
+                "Dr.Lory": 1,
+                "Krystal": 0
+            },
+            "11": {
+                "Ali": 1,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "3": {
+                "Ali": 0,
+                "Dr.Lory": 0,
+                "Krystal": 0
+            },
+            "4": {
+                "Ali": 1,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "5": {
+                "Ali": 1,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 1,
+                "Dr.Lory": 1,
+                "Krystal": 3
+            }
+        }
+    },
+    "96": {
+        "images": {
+            "0": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "1": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 3
+            },
+            "11": {
+                "Ali": 4,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            },
+            "2": {
+                "Ali": 4,
+                "Dr.Lory": 4,
+                "Krystal": 4
+            },
+            "3": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            },
+            "4": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            },
+            "5": {
+                "Ali": 3,
+                "Dr.Lory": 4,
+                "Krystal": 3
+            },
+            "6": {
+                "Ali": 3,
+                "Dr.Lory": 3,
+                "Krystal": 0
+            }
+        }
+    }
+}
