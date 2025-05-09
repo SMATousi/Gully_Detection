@@ -57,7 +57,7 @@ def classify_tiles(average_data, positive_heuristic='complex', negative_threshol
             label_4_count = sum(1 for label in image_labels if label == 4)
             
             # Count images with label above 3 (excluding those counted as label 4)
-            above_3_count = sum(1 for label in image_labels if 3 < label < 4)
+            above_3_count = sum(1 for label in image_labels if 3 <= label < 4)
             
             # Check if the criteria are met
             is_positive = (label_4_count >= min_label_4 and above_3_count >= min_others_above_3)

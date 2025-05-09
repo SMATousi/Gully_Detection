@@ -34,7 +34,7 @@ dataset = EightImageDataset_DEM_GT_Geo(
 )
 
 # Pick a sample index to visualize
-idx = 11
+idx = 100
 
 images, dem_image, gt_mask, label, geo_info = dataset[idx]
 

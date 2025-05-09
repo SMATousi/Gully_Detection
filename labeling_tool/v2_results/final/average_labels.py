@@ -22,7 +22,7 @@ def main():
         base_dir / "Dr.Lory.json",
         base_dir / "Krystal.json"
     ]
-    output_file = base_dir / "average_labels.json"
+    output_file = base_dir / "max_labels.json"
     
     # Read all labeler files
     print(f"Reading label files...")
@@ -65,7 +65,8 @@ def main():
             if labels:
                 # Round to nearest integer
                 avg_label = sum(labels) / len(labels)
-                average_data[tile]["images"][image] = avg_label
+                max_label = max(labels)
+                average_data[tile]["images"][image] = max_label
     
     # Write the output file
     print(f"Writing results to {output_file}")
