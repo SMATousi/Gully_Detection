@@ -36,7 +36,7 @@ dataset = EightImageDataset_DEM_GT_Geo(
 # Pick a sample index to visualize
 idx = 100
 
-images, dem_image, gt_mask, label, geo_info = dataset[idx]
+images, dem_image, gt_mask, label = dataset[idx]
 
 for image in images:
     print(image.size)
@@ -64,6 +64,6 @@ plt.axis('off')
 plt.show()
 
 # Print geo info
-print('Geo Info:', geo_info)
+# print('Geo Info:', geo_info)
 print('Label:', label)
 print('len:', len(dataset))

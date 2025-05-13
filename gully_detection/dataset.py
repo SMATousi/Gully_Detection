@@ -267,6 +267,7 @@ class EightImageDataset_DEM_GT_Geo(Dataset):
         self.store_tiles(neg_tiles, neg_dir, neg_dem_dir, neg_gt_mask_dir, 0)
         
         self.transform = transform
+        self.resize_high = transforms.Resize((764,764))
 
     def group_files_by_tile(self, files):
         tile_dict = {}
@@ -305,24 +306,27 @@ class EightImageDataset_DEM_GT_Geo(Dataset):
 
     def __getitem__(self, idx):
         images_1 = [imageio.imread(img_path).astype('uint8') for img_path in self.data[idx]]
-        images = [transforms.functional.to_pil_image(image) for image in images_1]
-        dem_image = transforms.functional.to_pil_image(imageio.imread(self.dem_paths[idx]).astype('uint8'))
+        images = [transforms.functional.to_pil_image(image).convert("RGB") for image in images_1]
+        dem_image = transforms.functional.to_pil_image(imageio.imread(self.dem_paths[idx]).astype('uint8')).convert("RGB")
         gt_mask = transforms.functional.to_pil_image(imageio.imread(self.gt_mask_paths[idx]).astype('uint8'))
         if self.transform:
             # Generate a random seed for this tile
             seed = torch.randint(0, 2**32, (1,)).item()
             transformed_images = []
-            for image in images:
+            for i, image in enumerate(images):
                 torch.manual_seed(seed)
                 random.seed(seed)
-                transformed_images.append(self.transform(image))
+                if i == 1:
+                    transformed_images.append(self.transform(self.resize_high(image)))
+                else:
+                    transformed_images.append(self.transform(image))
             images = transformed_images
             torch.manual_seed(seed)
             random.seed(seed)
-            dem_image = self.transform(dem_image)
+            dem_image = self.transform(self.resize_high(dem_image))
             torch.manual_seed(seed)
             random.seed(seed)
             gt_mask = self.transform(gt_mask)
         label = torch.tensor(self.labels[idx], dtype=torch.float32)
         geo_info = self.geo_info[idx]
-        return images, dem_image, gt_mask, label, geo_info
+        return images, dem_image, gt_mask, label
