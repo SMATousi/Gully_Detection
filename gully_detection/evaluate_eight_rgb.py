@@ -32,6 +32,8 @@ def main():
     parser.add_argument("--checkpoint", type=str, required=True, help="Path to the model checkpoint")
     parser.add_argument("--output_file", type=str, required=True, help="Path to save prediction results JSON")
     parser.add_argument("--batchsize", type=int, default=8, help="Batch size for evaluation")
+    parser.add_argument("--conf_threshold", type=float, default=0.3, help="Confidence threshold for classification (default: 0.3)")
+    parser.add_argument("--detailed_output", type=str, help="Path to save detailed prediction results with confidence scores")
     
     args = parser.parse_args()
 
@@ -77,6 +79,7 @@ def main():
 
     # Dictionary to store predictions
     predictions = {}
+    detailed_predictions = {}
     ground_truth = {}
 
     # Collect all tile numbers
@@ -97,7 +100,17 @@ def main():
             
             # Get model predictions
             outputs = model(images)
-            preds = torch.round(outputs.squeeze()).detach().cpu().numpy()
+            raw_scores = outputs.squeeze().detach().cpu().numpy()
+            
+            # Apply confidence threshold for classification
+            preds = []
+            for score in raw_scores:
+                if score >= (0.5 + args.conf_threshold):
+                    preds.append(1)  # Confident positive
+                elif score <= (0.5 - args.conf_threshold):
+                    preds.append(0)  # Confident negative
+                else:
+                    preds.append(-1)  # Uncertain
             
             # Store batch predictions
             batch_size = labels.size(0)
@@ -106,9 +119,15 @@ def main():
                 if batch_idx < len(all_tile_numbers):
                     tile_number = all_tile_numbers[batch_idx]
                     predictions[tile_number] = int(preds[j])
+                    detailed_predictions[tile_number] = {
+                        "confidence": float(raw_scores[j]),
+                        "classification": int(preds[j])
+                    }
                     ground_truth[tile_number] = int(labels[j].cpu().numpy())
                     
-                    all_preds.append(int(preds[j]))
+                    # For metrics calculation, convert uncertain (-1) to closest class (0)
+                    metric_pred = int(preds[j]) if preds[j] != -1 else 0
+                    all_preds.append(metric_pred)
                     all_labels.append(int(labels[j].cpu().numpy()))
 
     # Calculate metrics
@@ -128,12 +147,30 @@ def main():
     
     print(f"Predictions saved to {args.output_file}")
 
+    # Save detailed predictions with confidence scores
+    detailed_output = args.detailed_output if args.detailed_output else args.output_file.replace('.json', '_detailed.json')
+    with open(detailed_output, 'w') as f:
+        json.dump(detailed_predictions, f, indent=2)
+    
+    print(f"Detailed predictions with confidence scores saved to {detailed_output}")
+
     # Also save ground truth for comparison
     gt_file = args.output_file.replace('.json', '_ground_truth.json')
     with open(gt_file, 'w') as f:
         json.dump(ground_truth, f, indent=2)
     
     print(f"Ground truth saved to {gt_file}")
+    
+    # Print statistics on classification with confidence threshold
+    uncertain_count = sum(1 for val in predictions.values() if val == -1)
+    positive_count = sum(1 for val in predictions.values() if val == 1)
+    negative_count = sum(1 for val in predictions.values() if val == 0)
+    total_count = len(predictions)
+    
+    print(f"\nClassification with confidence threshold {args.conf_threshold}:")
+    print(f"Positive: {positive_count} ({positive_count/total_count*100:.2f}%)")
+    print(f"Negative: {negative_count} ({negative_count/total_count*100:.2f}%)")
+    print(f"Uncertain: {uncertain_count} ({uncertain_count/total_count*100:.2f}%)")
 
 if __name__ == "__main__":
     main()

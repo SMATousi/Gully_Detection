@@ -72,7 +72,11 @@ def main():
             gt_label = int(ground_truth[tile_id])
         else:
             continue
-        pred_label = int(predictions[tile_id])
+
+        if predictions[tile_id]['classification'] != -1:
+            pred_label = int(predictions[tile_id]['classification'])
+        else:
+            continue
         
         y_true.append(gt_label)
         y_pred.append(pred_label)
