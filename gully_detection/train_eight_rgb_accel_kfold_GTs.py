@@ -282,6 +282,16 @@ def main():
                            'Validation/Recall': val_recall,
                            'Validation/F1': val_f1,
                            'Validation/Epoch': epoch})
+                    
+                    if (epoch + 1) % arg_savingstep == 0:
+                        
+                        os.makedirs('../saved_models', exist_ok=True)
+                        torch.save(model.state_dict(), f'../saved_models/model_epoch_{epoch+1}.pth')
+                        artifact = wandb.Artifact(f'model_epoch_{epoch+1}', type='model')
+                        artifact.add_file(f'../saved_models/model_epoch_{epoch+1}.pth')
+                        wandb.log_artifact(artifact)
+                        # save_comparison_figures(model, val_loader, epoch + 1, device)
+                
 
             val_metrics['loss'].append(val_loss)
             val_metrics['precision'].append(val_precision)
@@ -298,13 +308,10 @@ def main():
         if accelerator.is_main_process:
 
             if args.logging:
-
+                
+                
                 wandb.finish()
     
-        os.makedirs('/root/Gully_Saved_models', exist_ok=True)
-        torch.save(model.state_dict(), f'/root/Gully_Saved_models/model_fold_{fold+1}.pth')
-
-
     # Calculate average metrics
     avg_train_metrics = {key: np.mean([np.mean(fold[0][key]) for fold in fold_metrics]) for key in fold_metrics[0][0]}
     avg_val_metrics = {key: np.mean([np.mean(fold[1][key]) for fold in fold_metrics]) for key in fold_metrics[0][1]}
