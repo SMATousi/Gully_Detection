@@ -458,10 +458,10 @@ class EightImageDataset_DEM_GT_Geo_from_JSON(Dataset):
         if label == 1:
             gt_file = os.path.join(gt_mask_dir, f"ground_truth_tile_{tile_number}.tif")
         else:
-            gt_file = os.path.join(gt_mask_dir, f"negative_ground_truth_tile_{tile_number}.tif")
-            
+            gt_file = os.path.join(gt_mask_dir, f"negative_ground_truth_tile_{tile_number}.tif")            
         if not os.path.exists(gt_file):
             print(f"Warning: Ground truth file does not exist: {gt_file}")
+        
         self.gt_mask_paths.append(gt_file)
         
         self.labels.append(label)
@@ -491,7 +491,7 @@ class EightImageDataset_DEM_GT_Geo_from_JSON(Dataset):
         images_1 = [imageio.imread(img_path).astype('uint8') for img_path in self.data[idx]]
         images = [transforms.functional.to_pil_image(image).convert("RGB") for image in images_1]
         dem_image = transforms.functional.to_pil_image(imageio.imread(self.dem_paths[idx]).astype('uint8')).convert("RGB")
-        gt_mask = transforms.functional.to_pil_image(imageio.imread(self.gt_mask_paths[idx]).astype('uint8'))
+        gt_mask = transforms.functional.to_pil_image(imageio.imread(self.dem_paths[idx]).astype('uint8')).convert("RGB")
         
         if self.transform:
             # Generate a random seed for this tile
