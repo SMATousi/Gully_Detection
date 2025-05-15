@@ -98,12 +98,12 @@ def main():
         transforms.ToTensor()
     ])
 
-    pos_dir = '/home/data/final_pos_neg_test_data_merging_25_2/pos/rgb_images'  # Directory with positive tile images
-    neg_dir = '/home/data/final_pos_neg_test_data_merging_25_2/neg/rgb_images'  # Directory with negative tile images
-    pos_dem_dir = '/home/data/final_pos_neg_test_data_merging_25_2/pos/dem' # Directory with positive DEM tiles
-    neg_dem_dir = '/home/data/final_pos_neg_test_data_merging_25_2/neg/dem' # Directory with negative DEM tiles
-    pos_gt_mask_dir = '/home/data/final_pos_neg_test_data_merging_25_2/pos/ground_truth' # Directory with positive GT masks
-    neg_gt_mask_dir = '/home/data/final_pos_neg_test_data_merging_25_2/neg/ground_truth' # Directory with negative GT masks
+    pos_dir = '/root/home/data/pos/rgb_images'  # Directory with positive tile images
+    neg_dir = '/root/home/data/neg/rgb_images'  # Directory with negative tile images
+    pos_dem_dir = '/root/home/data/pos/dem' # Directory with positive DEM tiles
+    neg_dem_dir = '/root/home/data/neg/dem' # Directory with negative DEM tiles
+    pos_gt_mask_dir = '/root/home/data/pos/ground_truth' # Directory with positive GT masks
+    neg_gt_mask_dir = '/root/home/data/neg/ground_truth' # Directory with negative GT masks
 
     if args.gt_choice == 'neg_strict':
         json_path = '../labeling_tool/v2_results/final/agg/neg_strict_labels_majority.json'
