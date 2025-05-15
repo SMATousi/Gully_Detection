@@ -1,5 +1,6 @@
 import os
 import matplotlib.pyplot as plt
+from dataset import EightImageDataset_DEM_GT_Geo_from_JSON
 from dataset import EightImageDataset_DEM_GT_Geo
 from torchvision import transforms
 import torch
@@ -13,28 +14,49 @@ augmentation = transforms.Compose([
 ])
 
 # Example paths (edit these to your actual data locations)
-pos_dir = '/home/Desktop/train_pos_neg/pos/rgb_images'  # Directory with positive tile images
-neg_dir = '/home/Desktop/train_pos_neg/neg/rgb_images'  # Directory with negative tile images
-pos_dem_dir = '/home/Desktop/train_pos_neg/pos/dem' # Directory with positive DEM tiles
-neg_dem_dir = '/home/Desktop/train_pos_neg/neg/dem' # Directory with negative DEM tiles
-pos_gt_mask_dir = '/home/Desktop/train_pos_neg/pos/ground_truth' # Directory with positive GT masks
-neg_gt_mask_dir = '/home/Desktop/train_pos_neg/neg/ground_truth' # Directory with negative GT masks
+# pos_dir = '/home/Desktop/train_pos_neg/pos/rgb_images'  # Directory with positive tile images
+# neg_dir = '/home/Desktop/train_pos_neg/neg/rgb_images'  # Directory with negative tile images
+# pos_dem_dir = '/home/Desktop/train_pos_neg/pos/dem' # Directory with positive DEM tiles
+# neg_dem_dir = '/home/Desktop/train_pos_neg/neg/dem' # Directory with negative DEM tiles
+# pos_gt_mask_dir = '/home/Desktop/train_pos_neg/pos/ground_truth' # Directory with positive GT masks
+# neg_gt_mask_dir = '/home/Desktop/train_pos_neg/neg/ground_truth' # Directory with negative GT masks
+json_path = '/root/Gully_Detection/labeling_tool/v2_results/final/agg/neg_strict_labels_majority.json'
+
+pos_dir = '/home/Desktop/final_pos_neg_test_data_merging_25_2/pos/rgb_images'  # Directory with positive tile images
+neg_dir = '/home/Desktop/final_pos_neg_test_data_merging_25_2/neg/rgb_images'  # Directory with negative tile images
+pos_dem_dir = '/home/Desktop/final_pos_neg_test_data_merging_25_2/pos/dem' # Directory with positive DEM tiles
+neg_dem_dir = '/home/Desktop/final_pos_neg_test_data_merging_25_2/neg/dem' # Directory with negative DEM tiles
+pos_gt_mask_dir = '/home/Desktop/final_pos_neg_test_data_merging_25_2/pos/ground_truth' # Directory with positive GT masks
+neg_gt_mask_dir = '/home/Desktop/final_pos_neg_test_data_merging_25_2/neg/ground_truth' # Directory with negative GT masks
+
 
 # Instantiate the dataset with augmentation
 # You can change 'augmentation' to None to see non-augmented images
-dataset = EightImageDataset_DEM_GT_Geo(
+# dataset = EightImageDataset_DEM_GT_Geo(
+#     pos_dir=pos_dir,
+#     neg_dir=neg_dir,
+#     pos_dem_dir=pos_dem_dir,
+#     neg_dem_dir=neg_dem_dir,
+#     pos_gt_mask_dir=pos_gt_mask_dir,
+#     neg_gt_mask_dir=neg_gt_mask_dir,
+#     transform=augmentation,
+#     oversample=False
+# )
+
+dataset = EightImageDataset_DEM_GT_Geo_from_JSON(
     pos_dir=pos_dir,
     neg_dir=neg_dir,
     pos_dem_dir=pos_dem_dir,
     neg_dem_dir=neg_dem_dir,
     pos_gt_mask_dir=pos_gt_mask_dir,
     neg_gt_mask_dir=neg_gt_mask_dir,
+    labels_json_path=json_path,
     transform=augmentation,
     oversample=False
 )
 
 # Pick a sample index to visualize
-idx = 100
+idx = 11
 
 images, dem_image, gt_mask, label = dataset[idx]
 
