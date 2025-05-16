@@ -1,5 +1,5 @@
 from sklearn.model_selection import KFold
-from sklearn.metrics import precision_score, recall_score, f1_score
+from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
 import numpy as np
 import torch
 import torch.nn as nn
@@ -130,7 +130,7 @@ def main():
         oversample=False
     )
 
-    kfold = KFold(n_splits=10, shuffle=True, random_state=0)
+    kfold = KFold(n_splits=5, shuffle=True, random_state=0)
 
     fold_metrics = []
     for fold, (train_idx, val_idx) in enumerate(kfold.split(full_dataset)):
@@ -223,6 +223,11 @@ def main():
             train_recall = recall_score(all_labels, all_preds)
             train_f1 = f1_score(all_labels, all_preds)
 
+            # Calculate confusion matrix and derived metrics
+            tn, fp, fn, tp = confusion_matrix(all_labels, all_preds, labels=[0,1]).ravel()
+            train_npv = tn / (tn + fn) if (tn + fn) > 0 else 0.0
+            train_for = fn / (fn + tn) if (fn + tn) > 0 else 0.0
+
             if accelerator.is_main_process:
 
                 if args.logging:
@@ -230,12 +235,16 @@ def main():
                             'Train/Precision': train_precision,
                             'Train/Recall': train_recall,
                             'Train/F1': train_f1,
+                            'Train/NPV': train_npv,
+                            'Train/FOR': train_for,
                             'Train/Epoch': epoch})
 
             train_metrics['loss'].append(train_loss)
             train_metrics['precision'].append(train_precision)
             train_metrics['recall'].append(train_recall)
             train_metrics['f1'].append(train_f1)
+            train_metrics.setdefault('npv', []).append(train_npv)
+            train_metrics.setdefault('for', []).append(train_for)
 
             # Validation Loop
             model.eval()
@@ -273,6 +282,11 @@ def main():
             val_recall = recall_score(all_labels, all_preds)
             val_f1 = f1_score(all_labels, all_preds)
 
+            # Calculate confusion matrix and derived metrics
+            tn, fp, fn, tp = confusion_matrix(all_labels, all_preds, labels=[0,1]).ravel()
+            val_npv = tn / (tn + fn) if (tn + fn) > 0 else 0.0
+            val_for = fn / (fn + tn) if (fn + tn) > 0 else 0.0
+
             if accelerator.is_main_process:
 
                 if args.logging:
@@ -281,6 +295,8 @@ def main():
                            'Validation/Precision': val_precision,
                            'Validation/Recall': val_recall,
                            'Validation/F1': val_f1,
+                           'Validation/NPV': val_npv,
+                           'Validation/FOR': val_for,
                            'Validation/Epoch': epoch})
                     
                     if (epoch + 1) % arg_savingstep == 0:
@@ -297,9 +313,11 @@ def main():
             val_metrics['precision'].append(val_precision)
             val_metrics['recall'].append(val_recall)
             val_metrics['f1'].append(val_f1)
+            val_metrics.setdefault('npv', []).append(val_npv)
+            val_metrics.setdefault('for', []).append(val_for)
 
-            print(f"Epoch {epoch + 1}/{args.epochs} - Train Loss: {train_loss}, Train Precision: {train_precision}, Train Recall: {train_recall}, Train F1: {train_f1}")
-            print(f"Epoch {epoch + 1}/{args.epochs} - Val Loss: {val_loss}, Val Precision: {val_precision}, Val Recall: {val_recall}, Val F1: {val_f1}")
+            print(f"Epoch {epoch + 1}/{args.epochs} - Train Loss: {train_loss}, Train Precision: {train_precision}, Train Recall: {train_recall}, Train F1: {train_f1}, Train NPV: {train_npv}, Train FOR: {train_for}")
+            print(f"Epoch {epoch + 1}/{args.epochs} - Val Loss: {val_loss}, Val Precision: {val_precision}, Val Recall: {val_recall}, Val F1: {val_f1}, Val NPV: {val_npv}, Val FOR: {val_for}")
 
         fold_metrics.append((train_metrics, val_metrics))
 
@@ -318,6 +336,10 @@ def main():
 
     print("Average Train Metrics:", avg_train_metrics)
     print("Average Validation Metrics:", avg_val_metrics)
+    if 'npv' in avg_train_metrics and 'for' in avg_train_metrics:
+        print(f"Average Train NPV: {avg_train_metrics['npv']}, Average Train FOR: {avg_train_metrics['for']}")
+    if 'npv' in avg_val_metrics and 'for' in avg_val_metrics:
+        print(f"Average Validation NPV: {avg_val_metrics['npv']}, Average Validation FOR: {avg_val_metrics['for']}")
 
     
 
