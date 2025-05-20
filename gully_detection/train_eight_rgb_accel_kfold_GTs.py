@@ -130,7 +130,7 @@ def main():
         oversample=False
     )
 
-    kfold = KFold(n_splits=5, shuffle=True, random_state=0)
+    kfold = KFold(n_splits=5, shuffle=True)
 
     fold_metrics = []
     for fold, (train_idx, val_idx) in enumerate(kfold.split(full_dataset)):
