@@ -1,4 +1,4 @@
-from sklearn.model_selection import KFold
+from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
 import numpy as np
 import torch
@@ -130,10 +130,18 @@ def main():
         oversample=False
     )
 
-    kfold = KFold(n_splits=5, shuffle=True)
+    # Extract all labels from the dataset to use for stratified splitting
+    all_labels = []
+    for i in range(len(full_dataset)):
+        _, label = full_dataset[i]
+        all_labels.append(label.item())
+    all_labels = np.array(all_labels)
+    
+    # Use StratifiedKFold to maintain class distribution across folds
+    stratified_kfold = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 
     fold_metrics = []
-    for fold, (train_idx, val_idx) in enumerate(kfold.split(full_dataset)):
+    for fold, (train_idx, val_idx) in enumerate(stratified_kfold.split(np.arange(len(full_dataset)), all_labels)):
         print(f"Starting Fold {fold + 1}")
 
         if accelerator.is_main_process:
