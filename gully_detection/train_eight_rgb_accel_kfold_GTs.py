@@ -133,7 +133,7 @@ def main():
     # Extract all labels from the dataset to use for stratified splitting
     all_labels = []
     for i in range(len(full_dataset)):
-        _, _, _, labels = full_dataset[i]
+        _, _, _, label = full_dataset[i]
         all_labels.append(label.item())
     all_labels = np.array(all_labels)
     
