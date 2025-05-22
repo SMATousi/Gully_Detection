@@ -270,7 +270,7 @@ def main():
     count = 0
 
     # Base image directory
-    image_dir = '/home/Desktop/large_gd_dataset_sample/rgb_images/'
+    image_dir = '/home/Desktop/choroid/large_unlabeled_dataset/rgb_images/'
 
     tile_numbers = get_tile_numbers(image_dir)
     print(tile_numbers)
