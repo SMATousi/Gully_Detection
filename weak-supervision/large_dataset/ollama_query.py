@@ -260,6 +260,8 @@ def main():
     nottest = args.nottest
     logging = args.logging
 
+    os.makedirs(results_dir, exist_ok=True)
+
     if logging:
         wandb.init(project=projectname, name=runname)
     print("Pulling Ollama Model...")
@@ -304,7 +306,7 @@ def main():
         visualize = args.visualize
         
         # Create a collage of all images for this tile
-        print(f"Creating collage for tile {tile_number}...")
+        # print(f"Creating collage for tile {tile_number}...")
         collage = collage_images(args.image_dir, tile_number, visual=visualize)
         
         if collage is None:
