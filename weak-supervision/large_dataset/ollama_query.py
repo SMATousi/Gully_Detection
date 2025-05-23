@@ -290,7 +290,7 @@ def main():
     context_embedding = generate_context_embedding(class_names, model_name, options)
     print("Done setting up clip...")
     model_labels = {}
-    text_length = 500
+    text_length = 50
     count = 0
 
     # Base image directory
