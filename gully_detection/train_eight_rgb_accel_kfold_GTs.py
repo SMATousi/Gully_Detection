@@ -43,6 +43,7 @@ def main():
     parser.add_argument("--projectname", type=str, required=False)
     parser.add_argument("--modelname", type=str, required=False)
     parser.add_argument("--batchsize", type=int, default=4)
+    parser.add_argument("--folds", type=int, default=5)
     parser.add_argument("--savingstep", type=int, default=100)
     parser.add_argument("--epochs", type=int, default=100)
     parser.add_argument("--imagesize", type=int, default=256)
@@ -138,7 +139,7 @@ def main():
     all_labels = np.array(all_labels)
     
     # Use StratifiedKFold to maintain class distribution across folds
-    stratified_kfold = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    stratified_kfold = StratifiedKFold(n_splits=args.folds, shuffle=True, random_state=42)
 
     fold_metrics = []
     for fold, (train_idx, val_idx) in enumerate(stratified_kfold.split(np.arange(len(full_dataset)), all_labels)):
