@@ -357,7 +357,7 @@ def main():
 
         
         if args.savingstep > 0 and count % args.savingstep == 0:
-            results_file_path = f"{results_dir}/{model_name}_labels.json"
+            results_file_path = f"{results_dir}/{model_name.replace(':', '-')}-labels.json"
             with open(results_file_path, "w") as f:
                 json.dump(model_labels, f)
                 
