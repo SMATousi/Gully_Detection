@@ -240,7 +240,7 @@ def main():
     parser.add_argument("--model_name", type=str, required=True, help=" VLM model name")
     parser.add_argument("--prompt", type=str, required=False, help="VLM prompt")
     parser.add_argument("--results_dir", type=str, required=False, help="Folder name to save results")
-    parser.add_argument("--timeout", type=int, default=100, help="time out duration to skip one sample")
+    parser.add_argument("--timeout", type=int, default=50, help="time out duration to skip one sample")
     parser.add_argument("--model_unloading", action="store_true", help="Enables unloading mode. Every 100 sampels it unloades the model from the GPU to avoid crashing.")
     parser.add_argument("--runname", type=str, required=False)
     parser.add_argument("--projectname", type=str, required=False)
@@ -330,25 +330,42 @@ def main():
             
             # Use the temporary file for ollama
             # print(f"Querying Ollama model with collage image...")
-            response = ollama.generate(model=model_name, prompt=prompt, images=[temp_img_path], options=options)
-            
-            # Print the response
-            # print("\nOllama Response:")
-            # print(response['response'] if 'response' in response else response)
+            try:
+                # Set alarm for timeout
+                signal.signal(signal.SIGALRM, timeout_handler)
+                signal.alarm(timeout_duration)
+                
+                response = ollama.generate(model=model_name, prompt=prompt, images=[temp_img_path], options=options)
+                
+                # Cancel the alarm if successful
+                signal.alarm(0)
+                
+                # Print the response
+                # print("\nOllama Response:")
+                # print(response['response'] if 'response' in response else response)
+                
+                timed_out = False
+            except TimeoutException:
+                print(f"Timeout occurred for tile {tile_number}. Skipping to next sample.")
+                timed_out = True
         
         finally:
             # Clean up the temporary directory and its contents
             # print("Cleaning up temporary files...")
             shutil.rmtree(temp_dir)
         
-        model_response = response['response']
-        if len(model_response) > text_length : 
-            query_prompt = model_response[:text_length]
-        else : 
-            query_prompt = model_response
-        query_embedding = get_query_embedding(query_prompt, tokenizer, text_encoder, device)
-        class_name = compute_scores_clip(class_embeddings, query_embedding, class_names_list)
-        class_number = class_dict[class_name]
+        if not timed_out:
+            model_response = response['response']
+            if len(model_response) > text_length : 
+                query_prompt = model_response[:text_length]
+            else : 
+                query_prompt = model_response
+            query_embedding = get_query_embedding(query_prompt, tokenizer, text_encoder, device)
+            class_name = compute_scores_clip(class_embeddings, query_embedding, class_names_list)
+            class_number = class_dict[class_name]
+        else:
+            # If timeout occurred, set class_number to -1
+            class_number = -1
         # print(f"Tile {tile_number}: {class_name} ({class_number})")
         model_labels[str(tile_number)] = class_number
 
