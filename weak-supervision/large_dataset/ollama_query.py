@@ -224,10 +224,10 @@ def save_to_wandb(results_file_path, model_name):
         results_data = json.load(f)
     
     # Log the file to wandb
-    wandb.log({f"{model_name}_results": wandb.Table(dataframe=pd.DataFrame(list(results_data.items()), columns=["tile_number", "class_label"]))}) 
+    wandb.log({f"{model_name.replace(':', '-')}-results": wandb.Table(dataframe=pd.DataFrame(list(results_data.items()), columns=["tile_number", "class_label"]))}) 
     
     # Also save the raw JSON file as an artifact
-    results_artifact = wandb.Artifact(f"{model_name}_labels", type="predictions")
+    results_artifact = wandb.Artifact(f"{model_name.replace(':', '-')}-labels", type="predictions")
     results_artifact.add_file(results_file_path)
     wandb.log_artifact(results_artifact)
     
