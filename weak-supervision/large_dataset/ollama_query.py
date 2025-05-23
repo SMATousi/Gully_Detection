@@ -209,8 +209,29 @@ class TimeoutException(Exception):
     pass
 
 def timeout_handler(signum, frame):
-    raise TimeoutException
+    raise TimeoutException("Timed out!")
 
+def save_to_wandb(results_file_path, model_name):
+    """
+    Save the results JSON file to wandb.
+    
+    Args:
+        results_file_path: Path to the results JSON file
+        model_name: Name of the model used for generating results
+    """
+    # Load the results JSON file
+    with open(results_file_path, 'r') as f:
+        results_data = json.load(f)
+    
+    # Log the file to wandb
+    wandb.log({f"{model_name}_results": wandb.Table(dataframe=pd.DataFrame(list(results_data.items()), columns=["tile_number", "class_label"]))}) 
+    
+    # Also save the raw JSON file as an artifact
+    results_artifact = wandb.Artifact(f"{model_name}_labels", type="predictions")
+    results_artifact.add_file(results_file_path)
+    wandb.log_artifact(results_artifact)
+    
+    # print(f"Results saved to wandb as '{model_name}_labels'")
 
 def main():
     parser = argparse.ArgumentParser(description="Run numerous experiments with varying VLM models on the Cars sign dataset")
@@ -226,7 +247,7 @@ def main():
     parser.add_argument("--nottest", help="Enable verbose mode", action="store_true")
     parser.add_argument("--tile", type=int, default=1, help="Tile number to analyze")
     parser.add_argument("--visualize", action="store_true", help="Visualize the collage using matplotlib")
-
+    parser.add_argument("--logging", action="store_true", help="Enable verbose mode")
     args = parser.parse_args()
 
     class_names = 'No, Yes'
@@ -237,7 +258,10 @@ def main():
     runname = args.runname
     projectname = args.projectname
     nottest = args.nottest
+    logging = args.logging
 
+    if logging:
+        wandb.init(project=projectname, name=runname)
     print("Pulling Ollama Model...")
     print(model_name)
     ollama.pull(model_name)
@@ -329,8 +353,13 @@ def main():
 
         
 
-        with open(f"{results_dir}/{model_name}_labels.json", "w") as f:
+        results_file_path = f"{results_dir}/{model_name}_labels.json"
+        with open(results_file_path, "w") as f:
             json.dump(model_labels, f)
+            
+        # Save results to wandb if logging is enabled
+        if logging:
+            save_to_wandb(results_file_path, model_name)
 
         if not nottest:
             break
