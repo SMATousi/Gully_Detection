@@ -294,9 +294,9 @@ def main():
     count = 0
 
     # Base image directory
-    image_dir = '/home/Desktop/choroid/large_unlabeled_dataset/rgb_images/'
+    # image_dir = '/home/Desktop/choroid/large_unlabeled_dataset/rgb_images/'
 
-    tile_numbers = get_tile_numbers(image_dir)
+    tile_numbers = get_tile_numbers(args.image_dir) 
     print(tile_numbers)
     
     # Get tile number from command line
@@ -304,8 +304,8 @@ def main():
         visualize = args.visualize
         
         # Create a collage of all images for this tile
-        # print(f"Creating collage for tile {tile_number}...")
-        collage = collage_images(image_dir, tile_number, visual=visualize)
+        print(f"Creating collage for tile {tile_number}...")
+        collage = collage_images(args.image_dir, tile_number, visual=visualize)
         
         if collage is None:
             print(f"No images found for tile {tile_number}. Exiting.")
