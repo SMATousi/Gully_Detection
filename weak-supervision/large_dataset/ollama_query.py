@@ -248,6 +248,7 @@ def main():
     parser.add_argument("--tile", type=int, default=1, help="Tile number to analyze")
     parser.add_argument("--visualize", action="store_true", help="Visualize the collage using matplotlib")
     parser.add_argument("--logging", action="store_true", help="Enable verbose mode")
+    parser.add_argument("--savingstep", type=int, default=100)
     args = parser.parse_args()
 
     class_names = 'No, Yes'
@@ -352,16 +353,17 @@ def main():
         model_labels[str(tile_number)] = class_number
 
         # print(model_labels)
+        count += 1
 
         
-
-        results_file_path = f"{results_dir}/{model_name}_labels.json"
-        with open(results_file_path, "w") as f:
-            json.dump(model_labels, f)
-            
-        # Save results to wandb if logging is enabled
-        if logging:
-            save_to_wandb(results_file_path, model_name)
+        if args.savingstep > 0 and count % args.savingstep == 0:
+            results_file_path = f"{results_dir}/{model_name}_labels.json"
+            with open(results_file_path, "w") as f:
+                json.dump(model_labels, f)
+                
+            # Save results to wandb if logging is enabled
+            if logging:
+                save_to_wandb(results_file_path, model_name)
 
         if not nottest:
             break
