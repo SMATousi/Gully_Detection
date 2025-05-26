@@ -21,6 +21,7 @@ import numpy as np
 from torch.utils.data import Dataset, DataLoader
 import time
 import torch.multiprocessing as mp
+import torchvision.transforms as transforms
 
 
 class GullyTileDataset(Dataset):
@@ -35,7 +36,15 @@ class GullyTileDataset(Dataset):
         """
         self.image_dir = image_dir
         self.tile_numbers = tile_numbers
-        self.transform = transform
+        
+        # Default transform if none provided
+        if transform is None:
+            self.transform = transforms.Compose([
+                transforms.ToTensor(),
+                transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+            ])
+        else:
+            self.transform = transform
         
     def __len__(self):
         return len(self.tile_numbers)
@@ -47,12 +56,14 @@ class GullyTileDataset(Dataset):
         if collage is None:
             # Return a placeholder if no images found
             collage = Image.new('RGB', (1200, 1200), (0, 0, 0))
-            return {"tile_number": tile_number, "collage": collage, "valid": False}
+            # Convert to tensor
+            tensor_collage = self.transform(collage)
+            return {"tile_number": tile_number, "collage": tensor_collage, "valid": False}
         
-        if self.transform:
-            collage = self.transform(collage)
+        # Convert to tensor
+        tensor_collage = self.transform(collage)
             
-        return {"tile_number": tile_number, "collage": collage, "valid": True}
+        return {"tile_number": tile_number, "collage": tensor_collage, "valid": True}
     
     def collage_images(self, base_path, tile_number):
         """
@@ -248,10 +259,15 @@ def process_batch(batch, model_name, prompt, options, tokenizer, text_encoder,
     """Process a batch of tile collages."""
     results = {}
     
-    for item in batch:
-        tile_number = item["tile_number"]
-        collage = item["collage"]
-        valid = item["valid"]
+    # Extract data from batch dictionary
+    tile_numbers = batch["tile_number"]
+    collages = batch["collage"]
+    valids = batch["valid"]
+    
+    for i in range(len(tile_numbers)):
+        tile_number = tile_numbers[i].item()
+        tensor_collage = collages[i]
+        valid = valids[i].item()
         
         if not valid:
             results[str(tile_number)] = -1
@@ -263,8 +279,16 @@ def process_batch(batch, model_name, prompt, options, tokenizer, text_encoder,
             # Create a unique temporary file name with PNG extension
             temp_img_path = os.path.join(temp_dir, f"collage_tile_{tile_number}_{uuid.uuid4()}.png")
             
-            # Save the collage to the temporary path in PNG format
-            collage.save(temp_img_path, format="PNG")
+            # Convert tensor back to PIL for saving
+            # Denormalize the tensor
+            mean = torch.tensor([0.485, 0.456, 0.406]).view(3, 1, 1)
+            std = torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
+            img_tensor = tensor_collage * std + mean
+            img_tensor = img_tensor.clamp(0, 1)
+            
+            # Convert to PIL
+            pil_image = transforms.ToPILImage()(img_tensor.cpu())
+            pil_image.save(temp_img_path, format="PNG")
             
             # Prepare prompt if not provided
             if not prompt:
@@ -386,12 +410,18 @@ def main():
     tile_numbers = get_tile_numbers(args.image_dir)
     print(f"Found {len(tile_numbers)} tiles")
     
-    if nottest:
+    if not nottest:
         # If testing, just use one tile
         tile_numbers = tile_numbers[:1]
     
+    # Create transform pipeline for dataset
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+    
     # Create dataset
-    dataset = GullyTileDataset(args.image_dir, tile_numbers)
+    dataset = GullyTileDataset(args.image_dir, tile_numbers, transform=transform)
     
     # Initialize dataloader with multiple workers
     dataloader = DataLoader(
