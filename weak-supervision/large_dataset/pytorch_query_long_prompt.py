@@ -437,6 +437,21 @@ def main():
     # Process batches
     all_results = {}
     start_time = time.time()
+
+    prompt = """
+    
+    Ephemeral gullies are temporary erosion channels that form intermittently on the landscape due to concentrated surface runoff, usually triggered by intense rainfall or rapid snowmelt. Unlike permanent gullies, ephemeral gullies are short-lived and often erased by agricultural tillage or sediment deposition, but they tend to reappear in the same locations during subsequent wet seasons. Their formation begins when rainfall intensity exceeds the infiltration capacity of the soil, leading to surface runoff that concentrates along flow paths such as natural depressions, field furrows, or compacted tracks. This runoff initially forms small rills that, under sustained flow, deepen and widen into more substantial channels classified as ephemeral gullies.
+
+    These gullies typically measure between 0.3 and 3 meters in width, with depths ranging from 0.2 to 1 meter, and can extend tens to hundreds of meters in length. They are commonly found on agricultural fields, unpaved roads, and deforested or disturbed hillsides, particularly where soils have poor structure, such as silt loam or clay loam. Moderate to steep slopes exacerbate their formation by increasing runoff velocity and erosive force. While ephemeral gullies may disappear from the surface after a rainfall season due to tillage or natural infill, their reoccurrence in similar locations over time indicates areas of chronic erosion vulnerability.
+
+    In satellite imagery, the visibility of ephemeral gullies depends heavily on spatial resolution and temporal frequency. In high-resolution images with spatial detail finer than five meters, these gullies may appear as narrow, sinuous incisions or V-shaped structures. They often exhibit darker tones than the surrounding terrain due to shadowing effects, increased soil moisture, or exposed subsoil. When analyzing vegetation indices such as NDVI, ephemeral gullies typically appear as zones of low vegetation activity due to bare soil exposure and vegetation loss. In digital terrain models or their derivatives—such as slope, curvature, or flow accumulation—ephemeral gullies align with converging hydrological pathways and surface depressions. These geomorphological patterns can be especially useful for detecting gullies that are no longer visually distinct but have left lasting topographic signatures.
+
+    Multi-temporal satellite analysis is critical for detecting and monitoring ephemeral gullies, as they may only appear briefly after major hydrological events. Imagery captured shortly after storms often reveals fresh erosion features, whereas later images may show them partially or fully obscured by sedimentation, vegetation regrowth, or mechanical smoothing. Comparing imagery from different times of year—before and after rainfall events or field tillage—can help track the lifecycle of gully formation and disappearance. In some cases, stereo or multi-angle imagery may enhance visibility by highlighting subtle topographic variations through shadow analysis.
+
+    Temporally, ephemeral gullies demonstrate a cyclic pattern of visibility. They emerge quickly in response to runoff events, remain visible for a limited time, and may disappear due to surface alterations. Despite their transient nature, their repeated appearance in the same locations provides crucial evidence of persistent hydrological and geomorphological stresses. Understanding their formation and evolution through time-series satellite imagery is essential for sustainable land management, erosion risk assessment, and the planning of soil conservation interventions.
+    
+    Does this location have an Ephemeral Gully? Answer with Yes or No.
+    """
     
     for batch_idx, batch in enumerate(tqdm(dataloader, desc="Processing batches")):
         batch_results = process_batch(
