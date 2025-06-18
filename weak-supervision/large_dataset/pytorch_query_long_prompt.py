@@ -453,6 +453,8 @@ def main():
     Does this location have an Ephemeral Gully? Answer with Yes or No.
     """
     
+
+    print(prompt)
     for batch_idx, batch in enumerate(tqdm(dataloader, desc="Processing batches")):
         batch_results = process_batch(
             batch, model_name, prompt, options, tokenizer, text_encoder,
