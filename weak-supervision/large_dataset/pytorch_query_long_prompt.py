@@ -268,9 +268,10 @@ def process_batch(batch, model_name, prompt, options, tokenizer, text_encoder,
         tile_number = tile_numbers[i].item()
         tensor_collage = collages[i]
         valid = valids[i].item()
+        results[str(tile_number)] = {}
         
         if not valid:
-            results[str(tile_number)] = -1
+            results[str(tile_number)]["class_label"] = -1
             continue
         
         # Create a temporary directory for this tile
@@ -328,7 +329,9 @@ def process_batch(batch, model_name, prompt, options, tokenizer, text_encoder,
             # If timeout occurred, set class_number to -1
             class_number = -1
             
-        results[str(tile_number)] = class_number
+        results[str(tile_number)]["class_label"] = class_number
+        results[str(tile_number)]["response"] = model_response
+        print(results[str(tile_number)])
     
     return results
 
@@ -455,6 +458,7 @@ def main():
     
 
     print(prompt)
+
     for batch_idx, batch in enumerate(tqdm(dataloader, desc="Processing batches")):
         batch_results = process_batch(
             batch, model_name, prompt, options, tokenizer, text_encoder,
