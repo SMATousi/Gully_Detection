@@ -453,7 +453,7 @@ def main():
 
     Temporally, ephemeral gullies demonstrate a cyclic pattern of visibility. They emerge quickly in response to runoff events, remain visible for a limited time, and may disappear due to surface alterations. Despite their transient nature, their repeated appearance in the same locations provides crucial evidence of persistent hydrological and geomorphological stresses. Understanding their formation and evolution through time-series satellite imagery is essential for sustainable land management, erosion risk assessment, and the planning of soil conservation interventions.
     
-    Does this location have an Ephemeral Gully? Answer with Yes or No.
+    Does this location have an Ephemeral Gully? Answer ONLY with Yes or No.
     """
     
 
