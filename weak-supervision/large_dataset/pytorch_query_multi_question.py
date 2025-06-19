@@ -335,7 +335,7 @@ def process_batch(batch,
             shutil.rmtree(temp_dir)
 
         llm_prompt = f"Given these questions and their respective answers, do you think an ephemeral gully is formed in the region in discusion? Your answer should only include one word: Yes or No. {results[str(tile_number)]['questions']}"
-        print(llm_prompt)      
+        # print(llm_prompt)      
         try:
             # Set alarm for timeout
             signal.signal(signal.SIGALRM, timeout_handler)
