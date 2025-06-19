@@ -334,14 +334,16 @@ def process_batch(batch,
             # Clean up the temporary directory and its contents
             shutil.rmtree(temp_dir)
 
-        llm_prompt = f"Given these questions and their respective answers, do you think an ephemeral gully is formed in the region in discusion? Your answer should only include one word: Yes or No. {results[str(tile_number)]['questions']}"
+        context_prompt = "Your answer is only one word: Yes or No. Do not mention any other words or phrases."
+        context_embedding = generate_context_embedding(context_prompt, llm_model_name, options)
+        llm_prompt = f"Given these questions and their respective answers, do you think an ephemeral gully is formed in the region in discusion? {results[str(tile_number)]['questions']}"
         # print(llm_prompt)      
         try:
             # Set alarm for timeout
             signal.signal(signal.SIGALRM, timeout_handler)
             signal.alarm(timeout_duration)
             
-            response = ollama.generate(model=llm_model_name, prompt=llm_prompt, options=options)
+            response = ollama.generate(model=llm_model_name, prompt=llm_prompt, context=context_embedding, options=options)
             
             # Cancel the alarm if successful
             signal.alarm(0)
