@@ -286,25 +286,26 @@ def process_batch(batch,
             results[str(tile_number)]["class_label"] = -1
             continue
         
-        for question in questions:
+
             
             # Create a temporary directory for this tile
-            temp_dir = tempfile.mkdtemp()
-            try:
-                # Create a unique temporary file name with PNG extension
-                temp_img_path = os.path.join(temp_dir, f"collage_tile_{tile_number}_{uuid.uuid4()}.png")
-                
-                # Convert tensor back to PIL for saving
-                # Denormalize the tensor
-                # mean = torch.tensor([0.485, 0.456, 0.406]).view(3, 1, 1)
-                # std = torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
-                # img_tensor = tensor_collage * std + mean
-                # img_tensor = img_tensor.clamp(0, 1)
-                
-                # Convert to PIL
-                pil_image = transforms.ToPILImage()(tensor_collage.cpu())
-                pil_image.save(temp_img_path, format="PNG")
-                
+        temp_dir = tempfile.mkdtemp()
+        try:
+            # Create a unique temporary file name with PNG extension
+            temp_img_path = os.path.join(temp_dir, f"collage_tile_{tile_number}_{uuid.uuid4()}.png")
+            
+            # Convert tensor back to PIL for saving
+            # Denormalize the tensor
+            # mean = torch.tensor([0.485, 0.456, 0.406]).view(3, 1, 1)
+            # std = torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
+            # img_tensor = tensor_collage * std + mean
+            # img_tensor = img_tensor.clamp(0, 1)
+            
+            # Convert to PIL
+            pil_image = transforms.ToPILImage()(tensor_collage.cpu())
+            pil_image.save(temp_img_path, format="PNG")
+            
+            for question in questions:
                 vlm_prompt = f"Given these set of 8 images of a tile taken over a period of 10 years, answer the following question: {question}"
                 
                 try:
@@ -321,15 +322,17 @@ def process_batch(batch,
                 except TimeoutException:
                     print(f"Timeout occurred for tile {tile_number}. Skipping to next sample.")
                     timed_out = True
-            
-            finally:
-                # Clean up the temporary directory and its contents
-                shutil.rmtree(temp_dir)
-            
-            if not timed_out:
-                results[str(tile_number)]["questions"][question] = response['response']
-            else:
-                results[str(tile_number)]["questions"][question] = "Timeout"
+        
+        
+        
+                if not timed_out:
+                    results[str(tile_number)]["questions"][question] = response['response']
+                else:
+                    results[str(tile_number)]["questions"][question] = "Timeout"
+
+        finally:
+            # Clean up the temporary directory and its contents
+            shutil.rmtree(temp_dir)
 
         llm_prompt = f"Given these questions and their respective answers, do you think an ephemeral gully is formed in the region in discusion? Your answer should only include one word: Yes or No. {results[str(tile_number)]['questions']}"
         print(llm_prompt)      
