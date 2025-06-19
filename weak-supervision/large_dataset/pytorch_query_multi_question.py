@@ -331,7 +331,7 @@ def process_batch(batch,
             else:
                 results[str(tile_number)]["questions"][question] = "Timeout"
 
-        llm_prompt = f"Given these questions and their respective answers, do you think an ephemeral gully is formed in the region in discusion? Your answer should only include one word: Yes or No. {results[str(tile_number)]["questions"]}"
+        llm_prompt = f"Given these questions and their respective answers, do you think an ephemeral gully is formed in the region in discusion? Your answer should only include one word: Yes or No. {results[str(tile_number)]['questions']}"
         print(llm_prompt)      
         try:
             # Set alarm for timeout
