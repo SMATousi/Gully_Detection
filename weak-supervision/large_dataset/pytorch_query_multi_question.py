@@ -467,7 +467,7 @@ def main():
     reverse_class_dict = {v: k for k, v in class_dict.items()}
 
     class_embeddings = get_class_embeddings(class_names_list, tokenizer, text_encoder, device)
-    context_embedding = generate_context_embedding(class_names, vlm_model_name, options)
+    context_embedding = generate_context_embedding(class_names, VLM_Model_name, options)
     print("Done setting up clip...")
     
     # Get tile numbers
@@ -528,13 +528,13 @@ def main():
         
         # Save results periodically
         if args.savingstep > 0 and (batch_idx + 1) % (args.savingstep // batch_size) == 0:
-            results_file_path = f"{results_dir}/{vlm_model_name.replace(':', '-')}-labels.json"
+            results_file_path = f"{results_dir}/{VLM_Model_name.replace(':', '-')}-multi-question-labels.json"
             with open(results_file_path, "w") as f:
                 json.dump(all_results, f)
                 
             # Save results to wandb if logging is enabled
             if logging:
-                save_to_wandb(results_file_path, vlm_model_name)
+                save_to_wandb(results_file_path, VLM_Model_name)
             
             print(f"Saved results after processing {(batch_idx + 1) * batch_size} samples")
             
@@ -545,13 +545,13 @@ def main():
             print("GPU memory cleared")
     
     # Save final results
-    results_file_path = f"{results_dir}/{vlm_model_name.replace(':', '-')}-labels-multi-questions.json"
+    results_file_path = f"{results_dir}/{VLM_Model_name.replace(':', '-')}-multi-question-labels.json"
     with open(results_file_path, "w") as f:
         json.dump(all_results, f)
         
     # Save results to wandb if logging is enabled
     if logging:
-        save_to_wandb(results_file_path, vlm_model_name)
+        save_to_wandb(results_file_path, VLM_Model_name)
         
     end_time = time.time()
     elapsed_time = end_time - start_time
