@@ -355,13 +355,13 @@ def process_batch(batch,
 
         if not timed_out:
             model_response = response['response']
-            text_length = 50
-            if len(model_response) > text_length: 
-                query_prompt = model_response[:text_length]
-            else:
-                query_prompt = model_response
             
-            query_embedding = get_query_embedding(query_prompt, tokenizer, text_encoder, device)
+            # Remove content between <think> tags
+            import re
+            cleaned_response = re.sub(r'<think>.*?</think>', '', model_response, flags=re.DOTALL)
+            
+            # Use the cleaned response for embedding
+            query_embedding = get_query_embedding(cleaned_response, tokenizer, text_encoder, device)
             class_name = compute_scores_clip(class_embeddings, query_embedding, class_names_list)
             class_number = class_dict[class_name]
         else:
@@ -369,7 +369,7 @@ def process_batch(batch,
             class_number = -1
             
         results[str(tile_number)]["class_label"] = class_number
-        results[str(tile_number)]["response"] = model_response
+        results[str(tile_number)]["response"] = cleaned_response
         print(results[str(tile_number)])
     
     return results
