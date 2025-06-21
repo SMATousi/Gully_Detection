@@ -236,7 +236,7 @@ class TimeoutException(Exception):
 def timeout_handler(signum, frame):
     raise TimeoutException("Timed out!")
 
-def save_to_wandb(results_file_path, vlm_model_name):
+def save_to_wandb(results_file_path, vlm_model_name, llm_model_name):
     """
     Save the results JSON file to wandb.
     
@@ -249,10 +249,10 @@ def save_to_wandb(results_file_path, vlm_model_name):
         results_data = json.load(f)
     
     # Log the file to wandb
-    wandb.log({f"{vlm_model_name.replace(':', '-')}-multi-question-results": wandb.Table(dataframe=pd.DataFrame(list(results_data.items()), columns=["tile_number", "class_label"]))}) 
+    wandb.log({f"{vlm_model_name.replace(':', '-')}-{llm_model_name.replace(':', '-')}-multi-question-results": wandb.Table(dataframe=pd.DataFrame(list(results_data.items()), columns=["tile_number", "class_label"]))}) 
     
     # Also save the raw JSON file as an artifact
-    results_artifact = wandb.Artifact(f"{vlm_model_name.replace(':', '-')}-multi-question-labels", type="predictions")
+    results_artifact = wandb.Artifact(f"{vlm_model_name.replace(':', '-')}-{llm_model_name.replace(':', '-')}-multi-question-labels", type="predictions")
     results_artifact.add_file(results_file_path)
     wandb.log_artifact(results_artifact)
 
@@ -536,13 +536,13 @@ def main():
         
         # Save results periodically
         if args.savingstep > 0 and (batch_idx + 1) % (args.savingstep // batch_size) == 0:
-            results_file_path = f"{results_dir}/{VLM_Model_name.replace(':', '-')}-multi-question-labels.json"
+            results_file_path = f"{results_dir}/{VLM_Model_name.replace(':', '-')}-{LLM_Model_name.replace(':', '-')}-multi-question-labels.json"
             with open(results_file_path, "w") as f:
                 json.dump(all_results, f)
                 
             # Save results to wandb if logging is enabled
             if logging:
-                save_to_wandb(results_file_path, VLM_Model_name)
+                save_to_wandb(results_file_path, VLM_Model_name, LLM_Model_name)
             
             print(f"Saved results after processing {(batch_idx + 1) * batch_size} samples")
             
@@ -553,7 +553,7 @@ def main():
             print("GPU memory cleared")
     
     # Save final results
-    results_file_path = f"{results_dir}/{VLM_Model_name.replace(':', '-')}-multi-question-labels.json"
+    results_file_path = f"{results_dir}/{VLM_Model_name.replace(':', '-')}-{LLM_Model_name.replace(':', '-')}-multi-question-labels.json"
     with open(results_file_path, "w") as f:
         json.dump(all_results, f)
         
