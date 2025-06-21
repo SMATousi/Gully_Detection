@@ -369,7 +369,7 @@ def process_batch(batch,
             class_number = -1
             
         results[str(tile_number)]["class_label"] = class_number
-        results[str(tile_number)]["response"] = cleaned_response
+        results[str(tile_number)]["response"] = cleaned_response if not timed_out else "Timeout"
         print(results[str(tile_number)])
     
     return results
