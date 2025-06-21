@@ -150,6 +150,9 @@ def get_class_embeddings(prompts, tokenizer, text_encoder, device):
     return text_embedding
     
 def get_query_embedding(query_prompt, tokenizer, text_encoder, device):
+    text_length = 77
+    if len(query_prompt) > text_length: 
+        query_prompt = query_prompt[:text_length]
     query_input = tokenizer(query_prompt, padding="max_length", return_tensors="pt").to(device)
     query_output = text_encoder(**query_input)
     query_embedding = query_output.pooler_output
