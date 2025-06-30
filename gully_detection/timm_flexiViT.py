@@ -8,7 +8,7 @@ class Flexi_ViT_Gully_Classifier(nn.Module):
 
         self.model_128 = timm.create_model('flexivit_small.1200ep_in1k', pretrained=True, img_size=128, patch_size=16)
         self.model_764 = timm.create_model('flexivit_small.1200ep_in1k', pretrained=True, img_size=764, patch_size=95)
-        self.final_layer = nn.Linear(in_features=8*24960, out_features=1, bias=True)
+        self.final_layer = nn.Linear(in_features=8*24960, out_features=2, bias=True)
         nn.init.xavier_uniform_(self.final_layer.weight, gain=0.01)  # Use a small gain value
         nn.init.zeros_(self.final_layer.bias)  # Initialize bias to zero
         self.sigmoid = nn.Sigmoid()
@@ -62,7 +62,7 @@ class Flexi_ViT_Gully_Classifier(nn.Module):
         stacked_features = self.dropout(stacked_features)
         output = self.final_layer(stacked_features)
         # print("output", output)
-        output = self.sigmoid(output)
+        # output = self.sigmoid(output)
         # print("output after sigmoid", output)
 
         return output

@@ -97,27 +97,11 @@ def main():
     
     print(device)
     
-    pos_dir = '/root/home/data/All_Pos_Neg/all_pos/rgb_images/'
-    neg_dir = '/root/home/data/All_Pos_Neg/all_neg/rgb_images/'
+    train_images_dir = '/root/home/data/All_Pos_Neg/all_pos/rgb_images/'
+    test_images_dir = '/root/home/data/All_Pos_Neg/all_neg/rgb_images/'
+    train_label_model_results_dir = '../weak-supervision/large_dataset/results/train_lable_model_results.json'
+    train_GT_labels_dir = '../labeling_tool/v2_results/final/agg/neg_strict_labels_majority.json'
 
-    pos_dem_dir = '/root/home/data/All_Pos_Neg/all_pos/dem/'
-    neg_dem_dir = '/root/home/data/All_Pos_Neg/all_neg/dem/'
-
-    pos_gt_mask_dir = '/root/home/data/All_Pos_Neg/all_pos/ground_truth/'
-    neg_gt_mask_dir = '/root/home/data/All_Pos_Neg/all_neg/ground_truth/'
-
-    
-    # dem_dir = '/root/home/data/dem'
-    # so_dir = '/root/home/data/so'
-    # rgb_dir = '/root/home/data/rgb'
-    
-    # pretrained_model_path = '/root/home/pre_trained/B3_rn50_moco_0099_ckpt.pth'
-    
-    #pretrained_model_path = '/home/macula/SMATousi/cluster/docker-images/dem2so_more_data/pre_models/B3_rn50_moco_0099_ckpt.pth'
-
-    #pretrained_model_path = '/home/macula/SMATousi/cluster/docker-images/dem2so_more_data/pre_models/B3_rn50_moco_0099_ckpt.pth'
-
-    
     
     batch_size = arg_batch_size
     learning_rate = 0.0001
@@ -128,88 +112,93 @@ def main():
     
     
     transform = transforms.Compose([
-        transforms.Resize((128, 128)),
+        # transforms.Resize((128, 128)),
         transforms.ToTensor()
     ])
     
-    full_dataset = SixImageDataset_DEM_GT(pos_dir, 
-                                 neg_dir, 
-                                 pos_dem_dir,
-                                 neg_dem_dir,
-                                 pos_gt_mask_dir,
-                                 neg_gt_mask_dir,
+    train_dataset = EightImageDataset_WS(train_images_dir,
+                                 train_label_model_results_dir,
                                  transform=transform)
     # DataLoader
     
-    n_val = int(len(full_dataset) * val_percent)
-    n_train = len(full_dataset) - n_val
-    train, val = random_split(full_dataset, [n_train, n_val])
+    test_dataset = EightImageDataset_WS_GT(test_images_dir,
+                                 test_GT_labels_dir,
+                                 transform=transform)
+    
+
+    n_val = int(len(train_dataset) * val_percent)
+    n_train = len(train_dataset) - n_val
+    train, val = random_split(train_dataset, [n_train, n_val])
 
     train_loader = DataLoader(train, batch_size=arg_batch_size, shuffle=True, num_workers=number_of_workers, pin_memory=True)
     val_loader = DataLoader(val, batch_size=arg_batch_size, shuffle=False, num_workers=number_of_workers, pin_memory=True, drop_last=True)
+    test_loader = DataLoader(test_dataset, batch_size=arg_batch_size, shuffle=False, num_workers=number_of_workers, pin_memory=True, drop_last=True)
     
     
     
     print("Data is loaded")
     
     
-    resnet_extractor = ResNetFeatureExtractor()
-    mlp_classifier = MLPClassifier(input_size=6*2048, hidden_size=512, output_size=1)
-    
-    model = Gully_Classifier(input_size=6*2048, hidden_size=512, output_size=1)
+    model = Flexi_ViT_Gully_Classifier()
+
+    criterion = torch.nn.KLDivLoss(reduction="batchmean")
+
+    optimizer = optim.Adam(model.parameters(), lr=0.00001)
+    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
+
+    model, optimizer, training_dataloader, scheduler = accelerator.prepare(
+    model, optimizer, train_loader, scheduler
+    )
+    validation_dataloader = accelerator.prepare(val_loader)
+    test_dataloader = accelerator.prepare(test_loader)
+
+    train_metrics = {'loss': [], 'precision': [], 'recall': [], 'f1': []}
+    val_metrics = {'loss': [], 'precision': [], 'recall': [], 'f1': []}
+    test_metrics = {'loss': [], 'precision': [], 'recall': [], 'f1': []}
     
     
     from torch.optim import Adam
     # criterion = nn.CrossEntropyLoss()
     # cldice_criterion = CE_CLDICE_Loss(alpha=arg_alpha, beta=arg_beta)
     # cldice_criterion = CE_CLDICE_Loss_optimized(alpha=arg_alpha, beta=arg_beta)
-
-    criterion = nn.BCELoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.0001)
-    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
-    
-    model, optimizer, training_dataloader, scheduler = accelerator.prepare(
-        model, optimizer, train_loader, scheduler
-    )
-    validation_dataloader = accelerator.prepare(val_loader)
     
     # Training loop
     
     for epoch in range(epochs):
 
-        # Training
-        resnet_extractor.eval()  # Feature extractor should be in eval mode
-        mlp_classifier.train()
-        
+        model.train()
+            
         total_loss = 0
         all_labels = []
         all_preds = []
         
         
         for batch in tqdm(training_dataloader):
-            images, dem_images, gt_masks, labels = batch
+            images, target_probs, target_label = batch
     
             # features = [resnet_extractor(image) for image in images]
             # stacked_features = torch.stack(features, dim=1)
             # output = mlp_classifier(stacked_features)
             output = model(images)
-            loss = criterion(output.squeeze(), labels)
 
-            all_predictions = accelerator.gather(output)
-            all_targets = accelerator.gather(labels)
+            loss = criterion(F.log_softmax(output, dim=1), target_probs)
+
+            predicted_labels = torch.argmax(output, dim=1)
+
+            all_predictions = accelerator.gather(predicted_labels)
+            all_targets = accelerator.gather(target_label)
 
             accelerator.backward(loss)
             optimizer.step()
             
             total_loss += loss.item()
             
-            preds = torch.round(all_predictions.squeeze()).detach().cpu().numpy()
+            preds = all_predictions.cpu().numpy()
             all_labels.extend(all_targets.cpu().numpy())
             all_preds.extend(preds)
     
             # Backward and optimize
             optimizer.zero_grad()
-            
             optimizer.step()
             
             if arg_nottest:
@@ -240,8 +229,7 @@ def main():
     
     
         # Validation loop
-        resnet_extractor.eval()
-        mlp_classifier.eval()
+        model.eval()
         
         total_loss = 0
         all_labels = []
@@ -249,21 +237,22 @@ def main():
         with torch.no_grad():
     
             for batch in tqdm(validation_dataloader):
-                images, dem_images, gt_masks, labels = batch
+                images, target_probs, target_label = batch
 
 
                 # features = [resnet_extractor(image) for image in images]
                 # stacked_features = torch.stack(features, dim=1)
                 # output = mlp_classifier(stacked_features)
                 output = model(images)
-                loss = criterion(output.squeeze(), labels)
+                predicted_labels = torch.argmax(F.log_softmax(output, dim=1), dim=1)
+                loss = criterion(F.log_softmax(output, dim=1), target_probs)
 
-                all_predictions = accelerator.gather(output)
-                all_targets = accelerator.gather(labels)
+                all_predictions = accelerator.gather(predicted_labels)
+                all_targets = accelerator.gather(target_label)
     
                 total_loss += loss.item()
 
-                preds = torch.round(all_predictions.squeeze()).detach().cpu().numpy()
+                preds = all_predictions.cpu().numpy()
                 all_labels.extend(all_targets.cpu().numpy())
                 all_preds.extend(preds)
 
@@ -299,6 +288,60 @@ def main():
                         artifact.add_file(f'../saved_models/model_epoch_{epoch+1}.pth')
                         wandb.log_artifact(artifact)
                         # save_comparison_figures(model, val_loader, epoch + 1, device)
+        
+        model.eval()
+        
+        # total_loss = 0
+        all_labels = []
+        all_preds = []
+        with torch.no_grad():
+    
+            for batch in tqdm(test_dataloader):
+                images, labels = batch
+
+
+                # features = [resnet_extractor(image) for image in images]
+                # stacked_features = torch.stack(features, dim=1)
+                # output = mlp_classifier(stacked_features)
+                output = model(images)
+                predicted_labels = torch.argmax(F.log_softmax(output, dim=1), dim=1)
+                # loss = criterion(F.log_softmax(output, dim=1), labels)
+
+                all_predictions = accelerator.gather(predicted_labels)
+                all_targets = accelerator.gather(labels)
+    
+                # total_loss += loss.item()
+
+                preds = all_predictions.cpu().numpy()
+                all_labels.extend(all_targets.cpu().numpy())
+                all_preds.extend(preds)
+
+                if arg_nottest:
+                        continue
+                else:
+                    break
+            
+            # if arg_nottest:
+            #     for k in val_metrics:
+            #         val_metrics[k] /= len(validation_dataloader)
+
+            # _loss = total_loss / len(val_loader)
+            test_precision = precision_score(all_labels, all_preds)
+            test_recall = recall_score(all_labels, all_preds)
+            test_f1 = f1_score(all_labels, all_preds)
+    
+            if accelerator.is_main_process:
+
+                if args.logging:
+
+                    wandb.log({'Test/Precision': test_precision,
+                           'Test/Recall': test_recall,
+                           'Test/F1': test_f1,
+                           'Test/Epoch': epoch})
+        
+                
+                
+
                 
     accelerator.wait_for_everyone()
 
