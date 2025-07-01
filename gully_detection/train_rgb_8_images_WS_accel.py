@@ -15,6 +15,7 @@ from accelerate.utils import DistributedDataParallelKwargs
 from model import *
 from dataset import *
 from utils import *
+from timm_flexiViT import Flexi_ViT_Gully_Classifier
 from sklearn.metrics import precision_score, recall_score, f1_score
 
 
