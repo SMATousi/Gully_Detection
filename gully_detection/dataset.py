@@ -9,6 +9,7 @@ import random
 import imageio
 import rasterio
 import json
+from tqdm import tqdm
 
 class SixImageDataset(Dataset):
     def __init__(self, pos_dir, neg_dir, transform=None):
@@ -557,7 +558,7 @@ class EightImageDataset_WS(Dataset):
 
     def group_files_by_tile(self, files):
         tile_dict = {}
-        for file in files:
+        for file in tqdm(files, desc='Grouping files by tile'):
             tile_number = file.split('_')[-1].split('.')[0]
             if tile_number not in tile_dict:
                 tile_dict[tile_number] = []
@@ -570,11 +571,11 @@ class EightImageDataset_WS(Dataset):
         return random.choices(tiles, k=target_length)
 
     def store_tiles(self, tiles, directory, label):
-        for tile_files in tiles:
+        for tile_files in tqdm(tiles, desc='Storing tiles'):
             tile_number = tile_files[0].split('_')[-1].split('.')[0]
             self.data.append([os.path.join(directory, f) for f in sorted(tile_files)])
             self.labels.append(label)
-            self.geo_info.append(self.extract_geo_info(os.path.join(directory, tile_files[0])))
+            # self.geo_info.append(self.extract_geo_info(os.path.join(directory, tile_files[0])))
 
     def extract_geo_info(self, file_path):
         with rasterio.open(file_path) as dataset:
