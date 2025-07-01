@@ -603,7 +603,7 @@ class EightImageDataset_WS(Dataset):
                 else:
                     transformed_images.append(self.transform(self.resize_low(image)))
                 
-                print("shape", transformed_images[i].shape)
+                # print("shape", transformed_images[i].shape)
             images = transformed_images
             torch.manual_seed(seed)
             random.seed(seed)
