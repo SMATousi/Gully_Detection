@@ -51,6 +51,7 @@ def main():
     parser.add_argument("--beta", type=float, default=1)
     parser.add_argument("--threshold", type=float, default=1)
     parser.add_argument("--dropoutrate", type=float, default=0.5)
+    parser.add_argument("--numworkers", type=int, default=0)
     parser.add_argument("--nottest", help="Enable verbose mode", action="store_true")
     parser.add_argument("--logging", help="Enable verbose mode", action="store_true")
     
@@ -67,7 +68,7 @@ def main():
     arg_dropoutrate = args.dropoutrate
     arg_alpha = args.alpha
     arg_beta = args.beta
-
+    arg_numworkers = args.numworkers
     
     if args.nottest:
         arg_nottest = True 
@@ -107,7 +108,7 @@ def main():
     batch_size = arg_batch_size
     learning_rate = 0.0001
     epochs = arg_epochs
-    number_of_workers = 8
+    number_of_workers = arg_numworkers
     image_size = arg_imagesize
     val_percent = 0.1
     
