@@ -669,9 +669,10 @@ class EightImageDataset_WS_GT(Dataset):
     def store_tiles(self, tiles, directory, label):
         for tile_files in tiles:
             tile_number = tile_files[0].split('_')[-1].split('.')[0]
-            self.data.append([os.path.join(directory, f) for f in sorted(tile_files)])
-            self.labels.append(label)
-            self.geo_info.append(self.extract_geo_info(os.path.join(directory, tile_files[0])))
+            if self.GT_labels.get(tile_number) is not None:
+                self.data.append([os.path.join(directory, f) for f in sorted(tile_files)])
+                self.labels.append(label)
+                self.geo_info.append(self.extract_geo_info(os.path.join(directory, tile_files[0])))
 
     def extract_geo_info(self, file_path):
         with rasterio.open(file_path) as dataset:
