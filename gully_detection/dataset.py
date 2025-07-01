@@ -700,7 +700,8 @@ class EightImageDataset_WS_GT(Dataset):
             torch.manual_seed(seed)
             random.seed(seed)
         
-        target_label = torch.tensor(int(self.GT_labels[idx]), dtype=torch.float32)
+        tile_number = self.data[idx][0].split('_')[-1].split('.')[0]
+        target_label = torch.tensor(int(self.GT_labels[tile_number]), dtype=torch.float32)
 
         # geo_info = self.geo_info[idx]
 
