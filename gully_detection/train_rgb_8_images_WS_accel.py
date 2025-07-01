@@ -16,7 +16,7 @@ from model import *
 from dataset import *
 from utils import *
 from timm_flexiViT import Flexi_ViT_Gully_Classifier
-from sklearn.metrics import precision_score, recall_score, f1_score
+from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score, confusion_matrix
 
 
 
@@ -208,23 +208,36 @@ def main():
             else:
                 break
         scheduler.step()
-        # if arg_nottest:
-        #     for k in train_metrics:
-        #         train_metrics[k] /= len(training_dataloader)
-
-        train_loss = total_loss / len(train_loader)
-        train_precision = precision_score(all_labels, all_preds)
+        train_loss = total_loss / len(training_dataloader)
+        train_accuracy = accuracy_score(all_labels, all_preds)
+        train_precision = precision_score(all_labels, all_preds, zero_division=0)
         train_recall = recall_score(all_labels, all_preds)
         train_f1 = f1_score(all_labels, all_preds)
+
+        # Confusion matrix for additional metrics
+        tn, fp, fn, tp = confusion_matrix(all_labels, all_preds).ravel()
+        train_specificity = tn / (tn + fp) if (tn + fp) > 0 else 0
+        train_npv = tn / (tn + fn) if (tn + fn) > 0 else 0
+        train_fpr = fp / (fp + tn) if (fp + tn) > 0 else 0
+        train_fnr = fn / (fn + tp) if (fn + tp) > 0 else 0
 
         if accelerator.is_main_process:
 
             if args.logging:
-                wandb.log({'Train/Loss':train_loss,
-                           'Train/Precision': train_precision,
-                           'Train/Recall': train_recall,
-                           'Train/F1': train_f1,
-                           'Train/Epoch': epoch})
+                    wandb.log({'Train/Loss': train_loss,
+                               'Train/Accuracy': train_accuracy,
+                               'Train/Precision': train_precision,
+                               'Train/Recall': train_recall,
+                               'Train/F1': train_f1,
+                               'Train/Specificity': train_specificity,
+                               'Train/NPV': train_npv,
+                               'Train/FPR': train_fpr,
+                               'Train/FNR': train_fnr,
+                               'Train/TP': tp,
+                               'Train/TN': tn,
+                               'Train/FP': fp,
+                               'Train/FN': fn,
+                               'Train/Epoch': epoch})
             
             print(f"Epoch [{epoch+1}/{epochs}] - Loss: {loss.item()}")
     
@@ -268,19 +281,36 @@ def main():
             #         val_metrics[k] /= len(validation_dataloader)
 
             val_loss = total_loss / len(val_loader)
-            val_precision = precision_score(all_labels, all_preds)
+            val_accuracy = accuracy_score(all_labels, all_preds)
+            val_precision = precision_score(all_labels, all_preds, zero_division=0)
             val_recall = recall_score(all_labels, all_preds)
             val_f1 = f1_score(all_labels, all_preds)
+
+            # Confusion matrix for additional metrics
+            tn, fp, fn, tp = confusion_matrix(all_labels, all_preds).ravel()
+            val_specificity = tn / (tn + fp) if (tn + fp) > 0 else 0
+            val_npv = tn / (tn + fn) if (tn + fn) > 0 else 0
+            val_fpr = fp / (fp + tn) if (fp + tn) > 0 else 0
+            val_fnr = fn / (fn + tp) if (fn + tp) > 0 else 0
     
             if accelerator.is_main_process:
 
                 if args.logging:
 
-                    wandb.log({'Validation/Loss':val_loss,
-                           'Validation/Precision': val_precision,
-                           'Validation/Recall': val_recall,
-                           'Validation/F1': val_f1,
-                           'Validation/Epoch': epoch})
+                    wandb.log({'Validation/Loss': val_loss,
+                               'Validation/Accuracy': val_accuracy,
+                               'Validation/Precision': val_precision,
+                               'Validation/Recall': val_recall,
+                               'Validation/F1': val_f1,
+                               'Validation/Specificity': val_specificity,
+                               'Validation/NPV': val_npv,
+                               'Validation/FPR': val_fpr,
+                               'Validation/FNR': val_fnr,
+                               'Validation/TP': tp,
+                               'Validation/TN': tn,
+                               'Validation/FP': fp,
+                               'Validation/FN': fn,
+                               'Validation/Epoch': epoch})
         
                     if (epoch + 1) % arg_savingstep == 0:
                         
@@ -328,18 +358,35 @@ def main():
             #         val_metrics[k] /= len(validation_dataloader)
 
             # _loss = total_loss / len(val_loader)
-            test_precision = precision_score(all_labels, all_preds)
+            test_accuracy = accuracy_score(all_labels, all_preds)
+            test_precision = precision_score(all_labels, all_preds, zero_division=0)
             test_recall = recall_score(all_labels, all_preds)
             test_f1 = f1_score(all_labels, all_preds)
+
+            # Confusion matrix for additional metrics
+            tn, fp, fn, tp = confusion_matrix(all_labels, all_preds).ravel()
+            test_specificity = tn / (tn + fp) if (tn + fp) > 0 else 0
+            test_npv = tn / (tn + fn) if (tn + fn) > 0 else 0
+            test_fpr = fp / (fp + tn) if (fp + tn) > 0 else 0
+            test_fnr = fn / (fn + tp) if (fn + tp) > 0 else 0
     
             if accelerator.is_main_process:
 
                 if args.logging:
 
-                    wandb.log({'Test/Precision': test_precision,
-                           'Test/Recall': test_recall,
-                           'Test/F1': test_f1,
-                           'Test/Epoch': epoch})
+                    wandb.log({'Test/Accuracy': test_accuracy,
+                               'Test/Precision': test_precision,
+                               'Test/Recall': test_recall,
+                               'Test/F1': test_f1,
+                               'Test/Specificity': test_specificity,
+                               'Test/NPV': test_npv,
+                               'Test/FPR': test_fpr,
+                               'Test/FNR': test_fnr,
+                               'Test/TP': tp,
+                               'Test/TN': tn,
+                               'Test/FP': fp,
+                               'Test/FN': fn,
+                               'Test/Epoch': epoch})
         
                 
                 
