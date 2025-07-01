@@ -603,8 +603,9 @@ class EightImageDataset_WS(Dataset):
             torch.manual_seed(seed)
             random.seed(seed)
         
-        target_probs = torch.tensor(self.label_model_results[idx]['proba'], dtype=torch.float32)
-        target_label = torch.tensor(int(self.label_model_results[idx]['label']), dtype=torch.float32)
+        tile_number = self.data[idx][0].split('_')[-1].split('.')[0]
+        target_probs = torch.tensor(self.label_model_results[tile_number]['proba'], dtype=torch.float32)
+        target_label = torch.tensor(int(self.label_model_results[tile_number]['label']), dtype=torch.float32)
 
         # geo_info = self.geo_info[idx]
 
