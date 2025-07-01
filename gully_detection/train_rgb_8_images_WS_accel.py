@@ -107,7 +107,7 @@ def main():
     batch_size = arg_batch_size
     learning_rate = 0.0001
     epochs = arg_epochs
-    number_of_workers = 0
+    number_of_workers = 8
     image_size = arg_imagesize
     val_percent = 0.1
     
@@ -144,8 +144,8 @@ def main():
 
     criterion = torch.nn.KLDivLoss(reduction="batchmean")
 
-    optimizer = optim.Adam(model.parameters(), lr=0.00001)
-    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
+    optimizer = optim.Adam(model.parameters(), lr=0.0001)
+    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.8)
 
     model, optimizer, training_dataloader, scheduler = accelerator.prepare(
     model, optimizer, train_loader, scheduler
@@ -206,7 +206,7 @@ def main():
                 continue
             else:
                 break
-    
+        scheduler.step()
         # if arg_nottest:
         #     for k in train_metrics:
         #         train_metrics[k] /= len(training_dataloader)
