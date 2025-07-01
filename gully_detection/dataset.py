@@ -594,13 +594,15 @@ class EightImageDataset_WS(Dataset):
             seed = torch.randint(0, 2**32, (1,)).item()
             transformed_images = []
             for i, image in enumerate(images):
-                print("shape", image.shape)
+                
                 torch.manual_seed(seed)
                 random.seed(seed)
                 if i == 1:
                     transformed_images.append(self.transform(self.resize_high(image)))
                 else:
                     transformed_images.append(self.transform(image))
+                
+                print("shape", transformed_images[i].shape)
             images = transformed_images
             torch.manual_seed(seed)
             random.seed(seed)
