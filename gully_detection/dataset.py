@@ -552,6 +552,7 @@ class EightImageDataset_WS(Dataset):
         self.store_tiles(tiles, image_dir, 1)
         
         self.resize_high = transforms.Resize((764,764))
+        self.resize_low = transforms.Resize((128,128))
 
     def load_label_model_results(self):
         return json.load(open(self.label_model_results_path, 'r'))
@@ -600,7 +601,7 @@ class EightImageDataset_WS(Dataset):
                 if i == 1:
                     transformed_images.append(self.transform(self.resize_high(image)))
                 else:
-                    transformed_images.append(self.transform(image))
+                    transformed_images.append(self.transform(self.resize_low(image)))
                 
                 print("shape", transformed_images[i].shape)
             images = transformed_images
@@ -646,6 +647,7 @@ class EightImageDataset_WS_GT(Dataset):
         self.store_tiles(tiles, image_dir, 1)
         
         self.resize_high = transforms.Resize((764,764))
+        self.resize_low = transforms.Resize((128,128))
 
     def load_GT_labels(self):
         return json.load(open(self.GT_labels_path, 'r'))
@@ -693,7 +695,7 @@ class EightImageDataset_WS_GT(Dataset):
                 if i == 1:
                     transformed_images.append(self.transform(self.resize_high(image)))
                 else:
-                    transformed_images.append(self.transform(image))
+                    transformed_images.append(self.transform(self.resize_low(image)))
             images = transformed_images
             torch.manual_seed(seed)
             random.seed(seed)
