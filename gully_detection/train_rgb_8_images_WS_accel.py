@@ -100,7 +100,7 @@ def main():
     train_images_dir = '/root/home/pvc/large_unlabeled_dataset/rgb_images/'
     test_images_dir = '/root/home/pvc/final_pos_neg_test_data_merging_25_2/all_tiles/'
     train_label_model_results_dir = '../weak-supervision/large_dataset/results/train_lable_model_results.json'
-    train_GT_labels_dir = '../labeling_tool/v2_results/final/agg/neg_strict_labels_majority.json'
+    test_GT_labels_dir = '../labeling_tool/v2_results/final/agg/neg_strict_labels_majority.json'
 
     
     batch_size = arg_batch_size
