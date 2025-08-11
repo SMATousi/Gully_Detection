@@ -2,11 +2,11 @@ specs:
   from_tif: 1
 
 region:
-  tif_file_path: '/home/Gullies/ground_truth/organized_data/MO_Downloaded_HUCs/HUC_071100080401-done/data/merged/tile_20__merged.tif'
-  point_1: [-92.2298350,39.4211876] 
-  point_2: [-92.2278203,39.4190313]
-  point_3: [-92.2301507,39.4177661]
-  point_4: [-92.2325582,39.4194416]
+  tif_file_path: '/home/macula/SMATousi/projects/vigir_remote_sensing/ndvi_calculation/Ellis-Field/rasterized_total_soil_survey_ellis.tif'
+  point_1: [-90.998080,39.127663] 
+  point_2: [-91.013487,39.120954]
+  point_3: [-90.996923,39.113592]
+  point_4: [-90.981398,39.121043]
 
 
 huc_number: &huc_number '15'
@@ -18,8 +18,8 @@ kmz_address:
 
 
 rgb:
-  choose: 1
-  path: '/home/Choroid/High_Res_Data/final_raw_data/HUC_071100080401/WGS_NAIP/rgb'
+  choose: 0
+  path: ''
   spec:
     scale: 1.0
     dimension: '2048x2048'
@@ -54,7 +54,7 @@ rgb:
 
 dem:
   choose: 1
-  path: '/home/Choroid/High_Res_Data/final_raw_data/HUC_071100080401/WGS_NAIP/dem'
+  path: '/home/macula/SMATousi/Desktop/temp_dem/dem'
   spec:
     dimension: '2000x2000'
     format: "GEO_TIFF"
@@ -65,7 +65,7 @@ dem:
 
 
 merge:
-  path: '/home/Choroid/High_Res_Data/final_raw_data/HUC_071100080401/WGS_NAIP/merged'
+  path: '/home/macula/SMATousi/Desktop/temp_dem/merged'
   
 
 MSDIS:
