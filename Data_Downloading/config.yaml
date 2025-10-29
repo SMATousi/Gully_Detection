@@ -74,17 +74,19 @@ MSDIS:
 
 custom_dataset:
   choose: 1
-  dataset_type: 'alpha_mean'
-  path: '/home/Choroid/Polaris/'
+  # dataset_type: 'alpha_mean'
+  dataset_type: 'S1_GRD'
+  path: '/home/Choroid/SAR/'
   spec:
-    dataset_name: "projects/sat-io/open-datasets/polaris/"
-    dimension: "2000x2000"
+    # dataset_name: "projects/sat-io/open-datasets/polaris/"
+    dataset_name: "COPERNICUS/"
+    dimension: "1000x1000"
     format: "GEO_TIFF"
     prefix: "custom_tile_"
-    scale: 1.0
+    scale: 2.0
     # Optional: specify band selection if needed
     # bands: ['b1']
     # Optional: specify date filters if the dataset is temporal
-    # filter_date_1: '2022'
-    # filter_date_2: '2000'
+    filter_date_1: '2025-08-25'
+    filter_date_2: '2025-08-20'
 
