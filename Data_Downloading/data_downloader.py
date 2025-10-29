@@ -45,6 +45,7 @@ config = replace_placeholders(config, placeholders)
 
 rgb_path = config['rgb']['path']
 dem_path = config['dem']['path']
+custom_dataset_path = os.path.join(config['custom_dataset']['path'], config['custom_dataset']['dataset_type'])
 
 # extraction_path = config['kmz_address']['extraction_path']
 # kmz_file_path = config['kmz_address']['kmz_file_path']
@@ -54,8 +55,14 @@ dem_path = config['dem']['path']
 
 
 
-os.makedirs(rgb_path, exist_ok=True)
-os.makedirs(dem_path, exist_ok=True)
+if config['rgb']['choose']:
+    os.makedirs(rgb_path, exist_ok=True)
+
+if config['dem']['choose']:
+    os.makedirs(dem_path, exist_ok=True)
+
+if config['custom_dataset']['choose']:
+    os.makedirs(custom_dataset_path, exist_ok=True)
 
 print(config['rgb']['spec']['filter_dates'])
 
@@ -244,6 +251,105 @@ if config['dem']['choose']:
                 # 'dimensions': params['dimensions'],
                 'format': params['format'],
                 'scale': config['dem']['spec']['scale']
+            }
+        )
+        
+        ext = 'tif'
+        r = requests.get(url, stream=True)
+        if r.status_code != 200:
+            r.raise_for_status()
+
+        out_dir = os.path.abspath(params['out_dir'])
+        basename = str(index).zfill(len(str(len(grid))))
+        filename = f"{out_dir}/{params['prefix']}{basename}.{ext}"
+        with open(filename, 'wb') as out_file:
+            shutil.copyfileobj(r.raw, out_file)
+        print("Done: ", basename)
+
+    # Run the Download in Parallel
+    pool = multiprocessing.Pool(params['processes'])
+    pool.starmap(download_tile, enumerate(grid))
+    pool.close()
+
+
+if config['custom_dataset']['choose']:
+
+    Map = geemap.Map()
+
+    # Parameters
+    params = {
+        'dimensions': config['custom_dataset']['spec']['dimension'],
+        'format': config['custom_dataset']['spec']['format'],
+        'prefix': config['custom_dataset']['spec']['prefix'],
+        'processes': 25,
+        'out_dir': custom_dataset_path
+    }
+
+    # Load the custom dataset
+    dataset_name = os.path.join(config['custom_dataset']['spec']['dataset_name'], config['custom_dataset']['dataset_type'])
+    
+    # Check if it's an ImageCollection or Image
+    try:
+        # Try as ImageCollection first
+        collection = ee.ImageCollection(dataset_name).filterBounds(region)
+        
+        # Apply date filters if specified
+        if 'filter_date_1' in config['custom_dataset']['spec'] and 'filter_date_2' in config['custom_dataset']['spec']:
+            collection = collection.filterDate(
+                config['custom_dataset']['spec']['filter_date_2'], 
+                config['custom_dataset']['spec']['filter_date_1']
+            )
+        
+        # Create mosaic and clip to region
+        image = collection.mosaic().clip(region)
+        
+    except Exception as e:
+        print(f"Failed to load as ImageCollection, trying as Image: {e}")
+        try:
+            # Try as single Image
+            image = ee.Image(dataset_name).clip(region)
+        except Exception as e2:
+            print(f"Failed to load dataset {dataset_name}: {e2}")
+            raise e2
+    
+    # Apply band selection if specified
+    if 'bands' in config['custom_dataset']['spec']:
+        image = image.select(config['custom_dataset']['spec']['bands'])
+
+    # Additional Function to create grid cells covering the region
+    def create_grid(region, dx, dy):
+        bounds = region.bounds().getInfo()['coordinates'][0]
+        minx = min([coord[0] for coord in bounds])
+        miny = min([coord[1] for coord in bounds])
+        maxx = max([coord[0] for coord in bounds])
+        maxy = max([coord[1] for coord in bounds])
+        
+        grid = []
+        x = minx
+        while x < maxx:
+            y = miny
+            while y < maxy:
+                cell = ee.Geometry.Rectangle([x, y, x + dx, y + dy])
+                grid.append(cell)
+                y += dy
+            x += dx
+        return grid
+
+    # Define your grid size
+    dx = 0.02  # Adjust grid size in x
+    dy = 0.02  # Adjust grid size in y
+
+    # Create grid
+    grid = create_grid(region, dx, dy)
+
+    def download_tile(index, cell):
+        region = cell.bounds().getInfo()['coordinates']
+        url = image.getDownloadURL(
+            {
+                'region': region,
+                # 'dimensions': params['dimensions'],
+                'format': params['format'],
+                'scale': config['custom_dataset']['spec']['scale']
             }
         )
         
